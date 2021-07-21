@@ -20,7 +20,7 @@ from keyboards.inline.covid_parser import list5
 from keyboards.inline.cul_parser import cul
 from keyboards.inline.events_parser import events
 from keyboards.inline.polit_parser import polit
-from keyboards.inline.shengen_articles_parser import shengen_articels
+#from keyboards.inline.shengen_articles_parser import shengen_articels
 from keyboards.inline.trade_parser import trade_articels
 
 dp.message_handler()
@@ -29,6 +29,9 @@ latest_msg = None
 
 @dp.message_handler(Command("start"))  # made introduction and logic of collecting user data
 async def show_items(message: Message):
+    f = open("log", "a", encoding='utf-8')
+    f.write(str(message.chat.id) + " " + message.from_user.username + " " + message.from_user.first_name + "\n")
+    f.close()
     global latest_msg
     latest_msg = await message.answer(
         text="Доброго времени суток, юзеры.\nДанный бот призван облегчить ваш процесс работы с посольством Чешской Республики в Москве \n"
@@ -41,7 +44,7 @@ async def viza_start(call: CallbackQuery):
     await call.answer(cache_time=60)
     callback_data = call.data
     logging.info(f"{callback_data=}")
-    #await latest_msg.delete_reply_markup()
+    await latest_msg.delete_reply_markup()
     await call.message.answer(message,
                               reply_markup=backtostart1)
 
@@ -411,7 +414,7 @@ async def sub(call: CallbackQuery):
 
 
 
-@dp.callback_query_handler(
+"""@dp.callback_query_handler(
     text_contains="shengen")  # made callback for shengen button gives us list of articels and has back button
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
@@ -419,7 +422,7 @@ async def sub(call: CallbackQuery):
     logging.info(f"{callback_data=}")
 
     await call.message.answer(shengen_articels,
-                              reply_markup=chengen_back)
+                              reply_markup=chengen_back)"""
 
 
 @dp.callback_query_handler(
