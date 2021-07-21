@@ -6,7 +6,7 @@ from keyboards.inline.calback_data import get_callback
 start = InlineKeyboardMarkup(row_width=2)#made the first keyboard for buttons with the begging buttons
 
 start_viza = InlineKeyboardButton(text="визы и консульская информация", callback_data=get_callback.new(item_name="basic info"))
-start.insert(start_viza )
+start.insert(start_viza)
 
 subscribe = InlineKeyboardButton(text="подписаться на рассылку новостей с сайта посольства", callback_data=get_callback.new(item_name="to subscribe"))
 start.insert(subscribe)
@@ -75,6 +75,9 @@ backtostart = InlineKeyboardButton(text="Вернуться в начало", ca
 viza_info.insert(backtostart)
 
 
+backtostart1 = InlineKeyboardMarkup(row_width=2)
+backtostart = InlineKeyboardButton(text="Вернуться в начало", callback_data=get_callback.new(item_name="bs"))
+backtostart1.insert(backtostart)
 
 backtovizainfo1 = InlineKeyboardMarkup(row_width=2)
 

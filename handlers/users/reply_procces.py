@@ -13,7 +13,7 @@ from keyboards.inline.calback_data import get_callback
 from keyboards.inline.buttons import start, long_term, covid_measures, viza2_info, \
     chengen_back, viza_info, transformed_viza_info, viza_info2, get_notified, get_back_to_start, \
     get_back_to_start_from_covid, get_back_to_mailing, get_back_from_education, another1, back_to_another, \
-    backtovizainfo1, back_to_long_term, get_back_from_covid
+    backtovizainfo1, back_to_long_term, get_back_from_covid, backtostart1
 from loader import dp, bot
 
 from keyboards.inline.covid_parser import list5
@@ -33,6 +33,18 @@ async def show_items(message: Message):
     latest_msg = await message.answer(
         text="Доброго времени суток, юзеры.\nДанный бот призван облегчить ваш процесс работы с посольством Чешской Республики в Москве \n"
              "Для начала работы выберете топик снизу", reply_markup=start)
+
+
+
+@dp.callback_query_handler(text_contains="basic info")
+async def viza_start(call: CallbackQuery):
+    await call.answer(cache_time=60)
+    callback_data = call.data
+    logging.info(f"{callback_data=}")
+    #await latest_msg.delete_reply_markup()
+    await call.message.answer(message,
+                              reply_markup=backtostart1)
+
 
 
 @dp.callback_query_handler(
