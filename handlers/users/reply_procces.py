@@ -274,7 +274,6 @@ async def sub(call: CallbackQuery):
 """
 
 
-
 """@dp.callback_query_handler(text_contains="about")#made callback for button which gives about's content
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)

@@ -51,7 +51,6 @@ another = InlineKeyboardButton(text="Вернуться в начало", callba
 another1.insert(another)
 
 
-
 back_to_another = InlineKeyboardMarkup(row_width=2)
 
 aback = InlineKeyboardButton(text="Вернуться назад", callback_data=get_callback.new(item_name="aback"))
