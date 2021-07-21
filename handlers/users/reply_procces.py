@@ -13,7 +13,7 @@ from keyboards.inline.calback_data import get_callback
 from keyboards.inline.buttons import start, long_term, covid_measures, viza2_info, \
     chengen_back, viza_info, transformed_viza_info, viza_info2, get_notified, get_back_to_start, \
     get_back_to_start_from_covid, get_back_to_mailing, get_back_from_education, another1, back_to_another, \
-    backtovizainfo1, back_to_long_term
+    backtovizainfo1, back_to_long_term, get_back_from_covid
 from loader import dp, bot
 
 from keyboards.inline.covid_parser import list5
@@ -145,6 +145,15 @@ async def sub(call: CallbackQuery):
     await call.message.answer(message,
                               reply_markup=back_to_long_term)
 
+@dp.callback_query_handler(text_contains="56")
+async def sub(call: CallbackQuery):
+    await call.answer(cache_time=60)
+    callback_data = call.data
+    logging.info(f"{callback_data=}")
+
+    await call.message.answer("Долгосрочная виза",
+                              reply_markup=long_term)
+
 
 
 @dp.callback_query_handler(text_contains="subagain")  # made call back for buttton which gives you list of news
@@ -168,14 +177,28 @@ async def sub(call: CallbackQuery):
                               reply_markup=transformed_viza_info)
 
 
-@dp.callback_query_handler(text_contains="covid")  # made callback for button get back to start
+
+@dp.callback_query_handler(text_contains="covidback")
+async def sub(call: CallbackQuery):
+    await call.answer(cache_time=60)
+    callback_data = call.data
+    logging.info(f"{callback_data=}")
+
+    await call.message.answer('Выберете направление',
+                              reply_markup=start)
+
+
+@dp.callback_query_handler(text_contains="covid")
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
     callback_data = call.data
     logging.info(f"{callback_data=}")
 
     await call.message.answer(list5,
-                              reply_markup=get_back_to_start_from_covid)
+                              reply_markup=get_back_from_covid)
+
+
+
 
 
 @dp.callback_query_handler(text_contains="getback")  # made callback for button get back to start
@@ -186,6 +209,7 @@ async def sub(call: CallbackQuery):
 
     await call.message.answer('Выберете направление',
                               reply_markup=start)
+
 
 
 @dp.callback_query_handler(text_contains="events")#made callback for button which gives event's content
@@ -302,6 +326,18 @@ async def sub(call: CallbackQuery):
                               reply_markup=viza_info)
 
 
+
+@dp.callback_query_handler(text_contains="basic")
+async def sub(call: CallbackQuery):
+    await call.answer(cache_time=60)
+    callback_data = call.data
+    logging.info(f"{callback_data=}")
+
+    await call.message.answer(message,
+                              reply_markup=backtovizainfo1)
+
+
+
 @dp.callback_query_handler(text_contains="chengen back")
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
@@ -361,15 +397,6 @@ async def sub(call: CallbackQuery):
     await call.message.answer("Выберете направление",
                               reply_markup=start)
 
-
-@dp.callback_query_handler(text_contains="get_back")
-async def sub(call: CallbackQuery):
-    await call.answer(cache_time=60)
-    callback_data = call.data
-    logging.info(f"{callback_data=}")
-
-    await call.message.answer("Выберете направление",
-                              reply_markup=start)
 
 
 @dp.callback_query_handler(

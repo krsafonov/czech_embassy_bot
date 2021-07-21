@@ -21,6 +21,12 @@ another = InlineKeyboardButton(text="То что не относится к ко
 start.insert(another)
 
 
+get_back_from_covid = InlineKeyboardMarkup(row_width=2)
+backfromcovid = InlineKeyboardButton(text="Вернуться назад", callback_data=get_callback.new(item_name="covidback"))
+get_back_from_covid.insert(backfromcovid)
+
+
+
 another1 = InlineKeyboardMarkup(row_width=2)#made keyboards for buttons for another data and add return button
 
 news_events = InlineKeyboardButton(text="Сообщения и события", callback_data=get_callback.new(item_name="events"))
@@ -77,8 +83,6 @@ backtovizainfo1.insert(aback12)
 
 
 
-
-
 viza_info2 = InlineKeyboardMarkup(row_width=2)#made modified keyboard for buttons for getting back from shengen
 
 long_term = InlineKeyboardButton(text="долгосрочная виза", callback_data=get_callback.new(item_name="long term viza"))
@@ -131,7 +135,7 @@ back_to_long_term = InlineKeyboardMarkup(row_width=2)
 
 get_back_to_start_from_covid = InlineKeyboardMarkup(row_width=2)
 back = InlineKeyboardButton(text="Вернуться назад", callback_data=get_callback.new(item_name="getbacklong"))
-back_to_long_term.insert(back)
+get_back_to_start_from_covid.insert(back)
 
 
 get_back_from_education= InlineKeyboardMarkup(row_width=2)
@@ -165,3 +169,9 @@ transformed_viza_info.insert(diff)
 
 get_back = InlineKeyboardButton(text="Вернуться в визовую информцию", callback_data=get_callback.new(item_name="get back to viza info"))
 transformed_viza_info.insert(get_back)
+
+
+back_to_long_term = InlineKeyboardMarkup(row_width=2)
+
+get_back = InlineKeyboardButton(text="Вернуться в долгосрочную визу", callback_data=get_callback.new(item_name="56"))
+back_to_long_term.insert(get_back)
