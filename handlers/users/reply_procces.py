@@ -7,15 +7,19 @@ from aiogram.types import Message, CallbackQuery
 
 from aiogram import types
 
-from handlers.users.news_list import get_headers
+from handlers.users.news_parser import get_headers
 from keyboards.inline.calback_data import get_callback
 from keyboards.inline.buttons import start, long_term, covid_measures, viza2_info, \
     chengen_back, viza_info, transformed_viza_info, viza_info2, get_notified, get_back_to_start, \
-    get_back_to_start_from_covid, get_back_to_mailing, get_back_from_education
+    get_back_to_start_from_covid, get_back_to_mailing, get_back_from_education, another1, back_to_another
 from loader import dp, bot
 
-from keyboards.inline.parser import list5
+from keyboards.inline.covid_parser import list5
+from keyboards.inline.cul_parser import cul
+from keyboards.inline.events_parser import events
+from keyboards.inline.polit_parser import polit
 from keyboards.inline.shengen_articles_parser import shengen_articels
+from keyboards.inline.trade_parser import trade_articels
 
 dp.message_handler()
 
@@ -35,7 +39,7 @@ async def viza_start(call: CallbackQuery):
     await call.answer(cache_time=60)
     callback_data = call.data
     logging.info(f"{callback_data=}")
-    await latest_msg.delete_reply_markup()
+    #await latest_msg.delete_reply_markup()
     await call.message.answer("Визовая информация",
                               reply_markup=viza_info)
 
@@ -112,6 +116,88 @@ async def sub(call: CallbackQuery):
                               reply_markup=start)
 
 
+@dp.callback_query_handler(text_contains="events")#made callback for button which gives event's content
+async def sub(call: CallbackQuery):
+    await call.answer(cache_time=60)
+    callback_data = call.data
+    logging.info(f"{callback_data=}")
+
+    await call.message.answer(events,
+                              reply_markup=back_to_another)
+
+
+@dp.callback_query_handler(text_contains="polit")#made callback for button which gives polit content
+async def sub(call: CallbackQuery):
+    await call.answer(cache_time=60)
+    callback_data = call.data
+    logging.info(f"{callback_data=}")
+
+    await call.message.answer(polit,
+                              reply_markup=back_to_another)
+
+
+@dp.callback_query_handler(text_contains="trade")#made callback for button which gives trade's content
+async def sub(call: CallbackQuery):
+    await call.answer(cache_time=60)
+    callback_data = call.data
+    logging.info(f"{callback_data=}")
+
+    await call.message.answer(trade_articels(),
+                              reply_markup=back_to_another)
+
+
+@dp.callback_query_handler(text_contains="cul")#made callback for button which gives culture's content
+async def sub(call: CallbackQuery):
+    await call.answer(cache_time=60)
+    callback_data = call.data
+    logging.info(f"{callback_data=}")
+
+    await call.message.answer(cul,
+                              reply_markup=back_to_another)
+
+"""@dp.callback_query_handler(text_contains="war")#made callback for button which gives war's content
+async def sub(call: CallbackQuery):
+    await call.answer(cache_time=60)
+    callback_data = call.data
+    logging.info(f"{callback_data=}")
+
+    await call.message.answer(None,
+                              reply_markup=back_to_another)
+"""
+
+
+"""@dp.callback_query_handler(text_contains="about")#made callback for button which gives about's content
+async def sub(call: CallbackQuery):
+    await call.answer(cache_time=60)
+    callback_data = call.data
+    logging.info(f"{callback_data=}")
+
+    await call.message.answer(None,
+                              reply_markup=back_to_another)"""
+
+
+@dp.callback_query_handler(text_contains="startback")
+async def sub(call: CallbackQuery):
+    await call.answer(cache_time=60)
+    callback_data = call.data
+    logging.info(f"{callback_data=}")
+
+    await call.message.answer("Выберете направление",
+                              reply_markup=start)
+
+
+
+
+@dp.callback_query_handler(text_contains="aback")#made callback for all another buttons
+async def sub(call: CallbackQuery):
+    await call.answer(cache_time=60)
+    callback_data = call.data
+    logging.info(f"{callback_data=}")
+
+    await call.message.answer('Выберете направление',
+                              reply_markup=another1)
+
+
 @dp.callback_query_handler(text_contains="get_back_to_start")  # made callback to start from getting notified
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
@@ -152,6 +238,56 @@ async def sub(call: CallbackQuery):
 
     await call.message.answer("Визовая информация",
                               reply_markup=viza_info2)
+
+
+@dp.callback_query_handler(text_contains="another")
+async def sub(call: CallbackQuery):
+    await call.answer(cache_time=60)
+    callback_data = call.data
+    logging.info(f"{callback_data=}")
+
+    await call.message.answer("Выберете направление",
+                              reply_markup=another1)
+
+
+@dp.callback_query_handler(text_contains="bs")#made c
+async def sub(call: CallbackQuery):
+    await call.answer(cache_time=60)
+    callback_data = call.data
+    logging.info(f"{callback_data=}")
+
+    await call.message.answer("Выберете направление",
+                              reply_markup=start)
+
+
+@dp.callback_query_handler(text_contains="bacs")
+async def sub(call: CallbackQuery):
+    await call.answer(cache_time=60)
+    callback_data = call.data
+    logging.info(f"{callback_data=}")
+
+    await call.message.answer("Выберете направление",
+                              reply_markup=start)
+
+
+@dp.callback_query_handler(text_contains="vb")
+async def sub(call: CallbackQuery):
+    await call.answer(cache_time=60)
+    callback_data = call.data
+    logging.info(f"{callback_data=}")
+
+    await call.message.answer("Визовая информация",
+                              reply_markup=viza_info2)
+
+
+@dp.callback_query_handler(text_contains="get_back")
+async def sub(call: CallbackQuery):
+    await call.answer(cache_time=60)
+    callback_data = call.data
+    logging.info(f"{callback_data=}")
+
+    await call.message.answer("Выберете направление",
+                              reply_markup=start)
 
 
 @dp.callback_query_handler(text_contains="get_back")
