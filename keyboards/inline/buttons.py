@@ -59,14 +59,24 @@ viza_info.insert(long_term)
 shengen = InlineKeyboardButton(text="шенгенская виза", callback_data=get_callback.new(item_name="shengen"))
 viza_info.insert(shengen)
 
-blanks = InlineKeyboardButton(text="бланки", callback_data=get_callback.new(item_name="6"))
+blanks = InlineKeyboardButton(text="бланки", callback_data=get_callback.new(item_name="blanks"))
 viza_info.insert(blanks)
 
-basic = blanks = InlineKeyboardButton(text="основная информация", callback_data=get_callback.new(item_name="5"))
+basic = InlineKeyboardButton(text="основная информация", callback_data=get_callback.new(item_name="basic"))
 viza_info.insert(basic)
 
 backtostart = InlineKeyboardButton(text="Вернуться в начало", callback_data=get_callback.new(item_name="bs"))
 viza_info.insert(backtostart)
+
+
+
+backtovizainfo1 = InlineKeyboardMarkup(row_width=2)
+
+aback12 = InlineKeyboardButton(text="Вернуться в визовую информацию", callback_data=get_callback.new(item_name="aback1"))
+backtovizainfo1.insert(aback12)
+
+
+
 
 
 viza_info2 = InlineKeyboardMarkup(row_width=2)#made modified keyboard for buttons for getting back from shengen
@@ -117,9 +127,11 @@ backtoviza = InlineKeyboardButton(text="Вернуться в визовую и�
 long_term.insert(backtoviza)
 
 
-get_back_to_start_from_covid = InlineKeyboardMarkup(row_width=2)#made button for getting back from covid to start
-back = InlineKeyboardButton(text="Вернуться назад", callback_data=get_callback.new(item_name="getback"))
-get_back_to_start_from_covid.insert(back)
+back_to_long_term = InlineKeyboardMarkup(row_width=2)
+
+get_back_to_start_from_covid = InlineKeyboardMarkup(row_width=2)
+back = InlineKeyboardButton(text="Вернуться назад", callback_data=get_callback.new(item_name="getbacklong"))
+back_to_long_term.insert(back)
 
 
 get_back_from_education= InlineKeyboardMarkup(row_width=2)

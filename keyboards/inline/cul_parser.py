@@ -10,4 +10,4 @@ cul = {}
 for i in content:
     cul[i.getText()] = "https://www.mzv.cz" + i.a["href"]
 
-print(cul)
+

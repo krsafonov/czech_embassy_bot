@@ -10,7 +10,7 @@ list5 = {}
 for i in content:
     list5[i.getText()] = "https://www.mzv.cz" + i.a["href"]
 
-print(list5)
+
 
 
 

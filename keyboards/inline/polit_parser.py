@@ -10,4 +10,4 @@ polit = {}
 for i in content:
     polit  [i.getText()] = "https://www.mzv.cz" + i.a["href"]
 
-print(polit)
+

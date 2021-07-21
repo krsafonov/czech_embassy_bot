@@ -8,10 +8,12 @@ from aiogram.types import Message, CallbackQuery
 from aiogram import types
 
 from handlers.users.news_parser import get_headers
+from keyboards.inline.blanks import message
 from keyboards.inline.calback_data import get_callback
 from keyboards.inline.buttons import start, long_term, covid_measures, viza2_info, \
     chengen_back, viza_info, transformed_viza_info, viza_info2, get_notified, get_back_to_start, \
-    get_back_to_start_from_covid, get_back_to_mailing, get_back_from_education, another1, back_to_another
+    get_back_to_start_from_covid, get_back_to_mailing, get_back_from_education, another1, back_to_another, \
+    backtovizainfo1, back_to_long_term
 from loader import dp, bot
 
 from keyboards.inline.covid_parser import list5
@@ -73,6 +75,76 @@ async def sub(call: CallbackQuery):
 
     await call.message.answer(get_headers(),
                               reply_markup=get_back_to_mailing)
+
+
+@dp.callback_query_handler(text_contains="blanks")
+async def sub(call: CallbackQuery):
+    await call.answer(cache_time=60)
+    callback_data = call.data
+    logging.info(f"{callback_data=}")
+
+    await call.message.answer(message,
+                              reply_markup=backtovizainfo1)
+
+
+@dp.callback_query_handler(text_contains="aback1")
+async def sub(call: CallbackQuery):
+    await call.answer(cache_time=60)
+    callback_data = call.data
+    logging.info(f"{callback_data=}")
+
+    await call.message.answer("Визовая информация",
+                              reply_markup=viza_info)
+
+
+@dp.callback_query_handler(text_contains="basic")
+async def sub(call: CallbackQuery):
+    await call.answer(cache_time=60)
+    callback_data = call.data
+    logging.info(f"{callback_data=}")
+
+    await call.message.answer(message,
+                              reply_markup=backtovizainfo1)
+
+@dp.callback_query_handler(text_contains="getbacklong")
+async def sub(call: CallbackQuery):
+    await call.answer(cache_time=60)
+    callback_data = call.data
+    logging.info(f"{callback_data=}")
+
+    await call.message.answer("Долгосрочная виза",
+                              reply_markup=long_term)
+
+
+@dp.callback_query_handler(text_contains="sport1")
+async def sub(call: CallbackQuery):
+    await call.answer(cache_time=60)
+    callback_data = call.data
+    logging.info(f"{callback_data=}")
+
+    await call.message.answer(message,
+                              reply_markup=back_to_long_term)
+
+
+@dp.callback_query_handler(text_contains="family1")
+async def sub(call: CallbackQuery):
+    await call.answer(cache_time=60)
+    callback_data = call.data
+    logging.info(f"{callback_data=}")
+
+    await call.message.answer(message,
+                              reply_markup=back_to_long_term)
+
+
+@dp.callback_query_handler(text_contains="how differ1")
+async def sub(call: CallbackQuery):
+    await call.answer(cache_time=60)
+    callback_data = call.data
+    logging.info(f"{callback_data=}")
+
+    await call.message.answer(message,
+                              reply_markup=back_to_long_term)
+
 
 
 @dp.callback_query_handler(text_contains="subagain")  # made call back for buttton which gives you list of news

@@ -14,4 +14,3 @@ def get_headers():
     return text_link_headers
 
 
-print(get_headers())
