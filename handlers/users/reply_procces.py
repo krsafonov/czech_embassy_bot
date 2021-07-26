@@ -38,12 +38,12 @@ from keyboards.inline.trade_parser import trade_articels
 
 dp.message_handler()
 
-latest_msg = None
+
 
 @dp.message_handler(Command("start"))  # made introduction and logic of collecting user's data
 async def show_items(message: Message):
-    global latest_msg
-    latest_msg = await message.answer(
+
+    await message.answer(
         text="Доброго времени суток, юзеры.\nДанный бот призван облегчить ваш процесс работы с посольством Чешской Республики в Москве \n"
              "Для начала работы выберете топик снизу", reply_markup=start)
 
@@ -78,7 +78,7 @@ async def viza_start(call: CallbackQuery):
     await call.answer(cache_time=60)
     callback_data = call.data
     logging.info(f"{callback_data=}")
-    await latest_msg.delete_reply_markup()
+
     await call.message.answer("Визовая информация",
                               reply_markup=viza_info)
 
@@ -282,7 +282,7 @@ async def sub(call: CallbackQuery):
     text = ""
     for i in list5:
         text += i +"("+ list5[i]+")\n"+'\n'
-    await latest_msg.delete_reply_markup()
+
     await call.message.answer(text,
                               reply_markup=back_to_start)
 
@@ -490,7 +490,7 @@ async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
     callback_data = call.data
     logging.info(f"{callback_data=}")
-    await latest_msg.delete_reply_markup()
+
     await call.message.answer("Выберете направление",
                               reply_markup=another2)
 
