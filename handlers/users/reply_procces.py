@@ -14,7 +14,7 @@ from keyboards.inline.buttons import start, long_term, covid_measures, viza2_inf
     chengen_back, viza_info, transformed_viza_info, viza_info2, get_notified, get_back_to_start, \
     get_back_to_start_from_covid, get_back_to_mailing, get_back_from_education, another1, back_to_another, \
     backtovizainfo1, back_to_long_term, get_back_from_covid, backtostart1
-from main import dp, bot
+from loader import dp, bot
 
 from keyboards.inline.covid_parser import list5
 from keyboards.inline.cul_parser import cul
