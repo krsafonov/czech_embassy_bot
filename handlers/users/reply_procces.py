@@ -21,7 +21,7 @@ from keyboards.inline.cul_parser import cul
 from keyboards.inline.events_parser import events
 from keyboards.inline.polit_parser import polit
 #from keyboards.inline.shengen_articles_parser import shengen_articels
-from keyboards.inline.trade_parser import trade_articels
+from keyboards.inline.trade_parser import trade_articles
 
 dp.message_handler()
 

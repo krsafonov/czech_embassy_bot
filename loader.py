@@ -1,8 +1,9 @@
 import logging
+import os
 
 from aiogram import Bot, Dispatcher, types
 
-from config import *
+token = os.getenv('BOT_TOKEN')
 
 
 bot = Bot(token=token, parse_mode=types.ParseMode.HTML)
