@@ -77,7 +77,6 @@ async def viza_start(call: CallbackQuery):
     await call.answer(cache_time=60)
     callback_data = call.data
     logging.info(f"{callback_data=}")
-    await latest_msg.delete_reply_markup()
     await call.message.answer("Визовая информация",
                               reply_markup=viza_info)
 
