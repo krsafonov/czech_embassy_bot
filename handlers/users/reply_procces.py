@@ -29,11 +29,8 @@ latest_msg = None
 
 @dp.message_handler(Command("start"))  # made introduction and logic of collecting user data
 async def show_items(message: Message):
-    f = open("log", "a", encoding='utf-8')
-    f.write(str(message.chat.id) + " " + message.from_user.username + " " + message.from_user.first_name + "\n")
-    f.close()
-    global latest_msg
-    latest_msg = await message.answer(
+    logging.warning(f'Recieved a message from {message.from_user}')
+    await message.answer(
         text="Доброго времени суток, юзеры.\nДанный бот призван облегчить ваш процесс работы с посольством Чешской Республики в Москве \n"
              "Для начала работы выберете топик снизу", reply_markup=start)
 
