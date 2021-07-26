@@ -280,7 +280,7 @@ async def sub(call: CallbackQuery):
     text = ""
     for i in list5:
         text += i +"("+ list5[i]+")\n"+'\n'
-    await latest_msg.delete_reply_markup()
+
     await call.message.answer(text,
                               reply_markup=back_to_start)
 
@@ -488,7 +488,7 @@ async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
     callback_data = call.data
     logging.info(f"{callback_data=}")
-    await latest_msg.delete_reply_markup()
+
     await call.message.answer("Выберете направление",
                               reply_markup=another2)
 
