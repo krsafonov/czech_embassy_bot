@@ -1,7 +1,6 @@
 import logging
 import typing
 
-import txt as txt
 from aiogram.utils.callback_data import CallbackData
 from aiogram.dispatcher.filters import Command
 from aiogram.types import Message, CallbackQuery
