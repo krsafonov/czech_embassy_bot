@@ -25,7 +25,6 @@ from keyboards.inline.trade_parser import trade_articles
 
 dp.message_handler()
 
-latest_msg = None
 
 @dp.message_handler(Command("start"))  # made introduction and logic of collecting user data
 async def show_items(message: Message):
@@ -41,7 +40,6 @@ async def viza_start(call: CallbackQuery):
     await call.answer(cache_time=60)
     callback_data = call.data
     logging.info(f"{callback_data=}")
-    await latest_msg.delete_reply_markup()
     await call.message.answer(message,
                               reply_markup=backtostart1)
 
