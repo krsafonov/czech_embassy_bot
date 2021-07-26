@@ -16,4 +16,5 @@ def set_hook():
 
 
 from loader import load
+from handlers import dp
 load()
