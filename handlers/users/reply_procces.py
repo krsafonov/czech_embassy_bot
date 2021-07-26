@@ -1,33 +1,46 @@
 import logging
 import typing
 
+import txt as txt
 from aiogram.utils.callback_data import CallbackData
 from aiogram.dispatcher.filters import Command
 from aiogram.types import Message, CallbackQuery
 
 from aiogram import types
 
-from handlers.users.news_parser import get_headers
+from handlers.users.bis_parser import bis
+from handlers.users.long_list_parser import long_list
+from handlers.users.news_parser import text_link_headers
 from keyboards.inline.blanks import message
 from keyboards.inline.calback_data import get_callback
 from keyboards.inline.buttons import start, long_term, covid_measures, viza2_info, \
-    chengen_back, viza_info, transformed_viza_info, viza_info2, get_notified, get_back_to_start, \
-    get_back_to_start_from_covid, get_back_to_mailing, get_back_from_education, another1, back_to_another, \
-    backtovizainfo1, back_to_long_term, get_back_from_covid, backtostart1
+    chengen_back, viza_info, transformed_viza_info, get_notified, \
+    get_back_to_start_from_covid, get_back_to_mailing, another1, back_to_another, \
+    backtovizainfo1, back_to_long_term, start2, menu, back_to_start, another2, get_back_from_education
+from keyboards.inline.center import center, center_c
+from keyboards.inline.constant_living_parser import constant
+from keyboards.inline.country_list_parser import content, clist
+from keyboards.inline.differ_parser import differ
+from keyboards.inline.family_parser import family
+from keyboards.inline.fee import fee_content, fee_list
+from keyboards.inline.long_living_parser import long
+from keyboards.inline.sport_paser import sport
+from keyboards.inline.viza_info_parse import content_viza
+from keyboards.inline.war_parser import c, content1
 from loader import dp, bot
 
 from keyboards.inline.covid_parser import list5
 from keyboards.inline.cul_parser import cul
 from keyboards.inline.events_parser import events
 from keyboards.inline.polit_parser import polit
-#from keyboards.inline.shengen_articles_parser import shengen_articels
+from keyboards.inline.shengen_articles_parser import shengen_articels
 from keyboards.inline.trade_parser import trade_articels
 
 dp.message_handler()
 
 latest_msg = None
 
-@dp.message_handler(Command("start"))  # made introduction and logic of collecting user data
+@dp.message_handler(Command("start"))  # made introduction and logic of collecting user's data
 async def show_items(message: Message):
     f = open("log", "a", encoding='utf-8')
     f.write(str(message.chat.id) + " " + message.from_user.username + " " + message.from_user.first_name + "\n")
@@ -37,16 +50,28 @@ async def show_items(message: Message):
         text="Доброго времени суток, юзеры.\nДанный бот призван облегчить ваш процесс работы с посольством Чешской Республики в Москве \n"
              "Для начала работы выберете топик снизу", reply_markup=start)
 
+"""@dp.message_handler(text_contains="1")
+async def huge(message: Message):
+    global latest_msg
+    await latest_msg.delete_reply_markup()
+    latest_msg = await message.answer('ну привет')"""
 
 
-@dp.callback_query_handler(text_contains="basic info")
+
+
+
+
+
+
+"""@dp.callback_query_handler(text_contains="basic info")
 async def viza_start(call: CallbackQuery):
     await call.answer(cache_time=60)
     callback_data = call.data
     logging.info(f"{callback_data=}")
     await latest_msg.delete_reply_markup()
-    await call.message.answer(message,
+    await call.message.answer(content_viza,
                               reply_markup=backtostart1)
+"""
 
 
 
@@ -56,19 +81,15 @@ async def viza_start(call: CallbackQuery):
     await call.answer(cache_time=60)
     callback_data = call.data
     logging.info(f"{callback_data=}")
-    #await latest_msg.delete_reply_markup()
+    await latest_msg.delete_reply_markup()
     await call.message.answer("Визовая информация",
                               reply_markup=viza_info)
 
 
-@dp.callback_query_handler(text_contains="to subscribe")  # made callback for button which makes you notified
-async def sub(call: CallbackQuery):
-    await call.answer(cache_time=60)
-    callback_data = call.data
-    logging.info(f"{callback_data=}")
 
-    await call.message.answer("Вы подписаны",
-                              reply_markup=get_notified)
+
+
+
 
 
 @dp.callback_query_handler(
@@ -87,9 +108,44 @@ async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
     callback_data = call.data
     logging.info(f"{callback_data=}")
+    text = ""
+    for i in text_link_headers:
+        text+=i+"("+text_link_headers[i]+")"+"\n"+"\n"
 
-    await call.message.answer(get_headers(),
+    await call.message.answer(text,
                               reply_markup=get_back_to_mailing)
+
+@dp.callback_query_handler(text_contains="subagain")
+async def sub(call: CallbackQuery):
+    await call.answer(cache_time=60)
+    callback_data = call.data
+    logging.info(f"{callback_data=}")
+
+    await call.message.answer("Выберете направление",
+                              reply_markup=get_notified)
+
+
+@dp.callback_query_handler(text_contains="long_list")
+async def sub(call: CallbackQuery):
+    await call.answer(cache_time=60)
+    callback_data = call.data
+    logging.info(f"{callback_data=}")
+    text = ""
+    for i in long_list:
+        text+=i+"("+long_list[i]+")""\n""\n"
+    await call.message.answer(text,
+                              reply_markup=get_back_from_education)
+
+
+@dp.callback_query_handler(text_contains="bis")
+async def sub(call: CallbackQuery):
+    await call.answer(cache_time=60)
+    callback_data = call.data
+    logging.info(f"{callback_data=}")
+
+    await call.message.answer(bis,
+                              reply_markup=get_back_from_education)
+
 
 
 @dp.callback_query_handler(text_contains="blanks")
@@ -118,7 +174,7 @@ async def sub(call: CallbackQuery):
     callback_data = call.data
     logging.info(f"{callback_data=}")
 
-    await call.message.answer(message,
+    await call.message.answer(content_viza,
                               reply_markup=backtovizainfo1)
 
 @dp.callback_query_handler(text_contains="getbacklong")
@@ -137,7 +193,7 @@ async def sub(call: CallbackQuery):
     callback_data = call.data
     logging.info(f"{callback_data=}")
 
-    await call.message.answer(message,
+    await call.message.answer(sport,
                               reply_markup=back_to_long_term)
 
 
@@ -147,7 +203,7 @@ async def sub(call: CallbackQuery):
     callback_data = call.data
     logging.info(f"{callback_data=}")
 
-    await call.message.answer(message,
+    await call.message.answer(family,
                               reply_markup=back_to_long_term)
 
 
@@ -157,7 +213,7 @@ async def sub(call: CallbackQuery):
     callback_data = call.data
     logging.info(f"{callback_data=}")
 
-    await call.message.answer(message,
+    await call.message.answer(differ,
                               reply_markup=back_to_long_term)
 
 @dp.callback_query_handler(text_contains="56")
@@ -171,7 +227,7 @@ async def sub(call: CallbackQuery):
 
 
 
-@dp.callback_query_handler(text_contains="subagain")  # made call back for buttton which gives you list of news
+@dp.callback_query_handler(text_contains="to subscribe")  # made call back for buttton which gives you list of news
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
     callback_data = call.data
@@ -189,11 +245,11 @@ async def sub(call: CallbackQuery):
     logging.info(f"{callback_data=}")
 
     await call.message.answer("Долгосрочная виза",
-                              reply_markup=transformed_viza_info)
+                              reply_markup=long_term)
 
 
 
-@dp.callback_query_handler(text_contains="covidback")
+@dp.callback_query_handler(text_contains="back_to_start")
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
     callback_data = call.data
@@ -203,14 +259,35 @@ async def sub(call: CallbackQuery):
                               reply_markup=start)
 
 
+
+@dp.callback_query_handler(text_contains="another2")
+async def sub(call: CallbackQuery):
+    await call.answer(cache_time=60)
+    callback_data = call.data
+    logging.info(f"{callback_data=}")
+    text = ""
+    for i in list5:
+        text += i +"("+ list5[i]+")\n"+'\n'
+
+    await call.message.answer("Выберете направление",
+                              reply_markup=another2)
+
+
+
+
+
+
 @dp.callback_query_handler(text_contains="covid")
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
     callback_data = call.data
     logging.info(f"{callback_data=}")
-
-    await call.message.answer(list5,
-                              reply_markup=get_back_from_covid)
+    text = ""
+    for i in list5:
+        text += i +"("+ list5[i]+")\n"+'\n'
+    await latest_msg.delete_reply_markup()
+    await call.message.answer(text,
+                              reply_markup=back_to_start)
 
 
 
@@ -242,8 +319,10 @@ async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
     callback_data = call.data
     logging.info(f"{callback_data=}")
-
-    await call.message.answer(polit,
+    text1 = ""
+    for i in polit:
+        text1 += i + "(" + polit[i] + ")\n" + '\n'
+    await call.message.answer(text1,
                               reply_markup=back_to_another)
 
 
@@ -252,9 +331,13 @@ async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
     callback_data = call.data
     logging.info(f"{callback_data=}")
-
-    await call.message.answer(trade_articels(),
+    text1 = ""
+    for i in trade_articels:
+        text1 += i + "(" + trade_articels[i] + ")\n" + '\n'
+    await call.message.answer(text1,
                               reply_markup=back_to_another)
+
+
 
 
 @dp.callback_query_handler(text_contains="cul")#made callback for button which gives culture's content
@@ -266,15 +349,15 @@ async def sub(call: CallbackQuery):
     await call.message.answer(cul,
                               reply_markup=back_to_another)
 
-"""@dp.callback_query_handler(text_contains="war")#made callback for button which gives war's content
+@dp.callback_query_handler(text_contains="war")#made callback for button which gives war's content
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
     callback_data = call.data
     logging.info(f"{callback_data=}")
 
-    await call.message.answer(None,
+    await call.message.answer(c,
                               reply_markup=back_to_another)
-"""
+
 
 
 """@dp.callback_query_handler(text_contains="about")#made callback for button which gives about's content
@@ -306,7 +389,7 @@ async def sub(call: CallbackQuery):
     logging.info(f"{callback_data=}")
 
     await call.message.answer('Выберете направление',
-                              reply_markup=another1)
+                              reply_markup=another2)
 
 
 @dp.callback_query_handler(text_contains="get_back_to_start")  # made callback to start from getting notified
@@ -326,7 +409,7 @@ async def sub(call: CallbackQuery):
     callback_data = call.data
     logging.info(f"{callback_data=}")
 
-    await call.message.answer("educ_data.txt",
+    await call.message.answer(content1,
                               reply_markup=get_back_from_education)
 
 
@@ -352,35 +435,70 @@ async def sub(call: CallbackQuery):
                               reply_markup=backtovizainfo1)
 
 
+@dp.callback_query_handler(text_contains="constant")
+async def sub(call: CallbackQuery):
+    await call.answer(cache_time=60)
+    callback_data = call.data
+    logging.info(f"{callback_data=}")
+    text = ""
+    for i in constant:
+        text+=i+"("+constant[i]+")"+"\n"+"\n"
+    await call.message.answer(text,
+                              reply_markup=chengen_back)
 
-@dp.callback_query_handler(text_contains="chengen back")
+
+@dp.callback_query_handler(text_contains="long_live")
+async def sub(call: CallbackQuery):
+    await call.answer(cache_time=60)
+    callback_data = call.data
+    logging.info(f"{callback_data=}")
+    text = ""
+    for i in long:
+        text+=i+"("+long[i]+")"+"\n"+"\n"
+    await call.message.answer(text,
+                              reply_markup=chengen_back)
+
+
+@dp.callback_query_handler(text_contains="country_list")
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
     callback_data = call.data
     logging.info(f"{callback_data=}")
 
-    await call.message.answer("Визовая информация",
-                              reply_markup=viza_info2)
+    await call.message.answer(clist,
+                              reply_markup=chengen_back)
 
+
+@dp.callback_query_handler(text_contains="fee")
+async def sub(call: CallbackQuery):
+    await call.answer(cache_time=60)
+    callback_data = call.data
+    logging.info(f"{callback_data=}")
+
+    await call.message.answer(fee_list,
+                              reply_markup=chengen_back)
+
+
+@dp.callback_query_handler(text_contains="viza_center")
+async def sub(call: CallbackQuery):
+    await call.answer(cache_time=60)
+    callback_data = call.data
+    logging.info(f"{callback_data=}")
+
+    await call.message.answer(center_c,
+                              reply_markup=chengen_back)
 
 @dp.callback_query_handler(text_contains="another")
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
     callback_data = call.data
     logging.info(f"{callback_data=}")
-
+    await latest_msg.delete_reply_markup()
     await call.message.answer("Выберете направление",
-                              reply_markup=another1)
+                              reply_markup=another2)
 
 
-@dp.callback_query_handler(text_contains="bs")#made c
-async def sub(call: CallbackQuery):
-    await call.answer(cache_time=60)
-    callback_data = call.data
-    logging.info(f"{callback_data=}")
 
-    await call.message.answer("Выберете направление",
-                              reply_markup=start)
 
 
 @dp.callback_query_handler(text_contains="bacs")
@@ -400,7 +518,7 @@ async def sub(call: CallbackQuery):
     logging.info(f"{callback_data=}")
 
     await call.message.answer("Визовая информация",
-                              reply_markup=viza_info2)
+                              reply_markup=viza_info)
 
 
 @dp.callback_query_handler(text_contains="get_back")
@@ -414,15 +532,17 @@ async def sub(call: CallbackQuery):
 
 
 
-"""@dp.callback_query_handler(
+@dp.callback_query_handler(
     text_contains="shengen")  # made callback for shengen button gives us list of articels and has back button
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
     callback_data = call.data
     logging.info(f"{callback_data=}")
-
-    await call.message.answer(shengen_articels,
-                              reply_markup=chengen_back)"""
+    text = ""
+    for i in shengen_articels:
+        text+=i+"("+shengen_articels[i]+")"+"\n"+"\n"
+    await call.message.answer(text,
+                              reply_markup=chengen_back)
 
 
 @dp.callback_query_handler(
