@@ -1,12 +1,33 @@
-from loader import bot
+import logging
+
+from aiogram import Bot, types
+from aiogram.contrib.middlewares.logging import LoggingMiddleware
+from aiogram.dispatcher import Dispatcher
+from aiogram.utils.executor import start_webhook
+from config import (BOT_TOKEN, HEROKU_APP_NAME,
+                    WEBHOOK_URL, WEBHOOK_PATH,
+                    WEBAPP_HOST, WEBAPP_PORT)
+
+bot = Bot(token=BOT_TOKEN)
+dp = Dispatcher(bot)
+dp.middleware.setup(LoggingMiddleware())
+
+
+async def on_startup(dp):
+    logging.warning(
+        'Starting connection. ')
+    await bot.set_webhook(WEBHOOK_URL,drop_pending_updates=True)
 
 
 async def on_shutdown(dp):
-    await bot.close()
+    logging.warning('Bye! Shutting down webhook connection')
 
-
-if __name__ == '__main__':
-    from aiogram import executor
-    from handlers import dp
-
-    executor.start_polling(dp, on_shutdown=on_shutdown)
+logging.basicConfig(level=logging.INFO)
+start_webhook(
+    dispatcher=dp,
+    webhook_path=WEBHOOK_PATH,
+    skip_updates=True,
+    on_startup=on_startup,
+    host=WEBAPP_HOST,
+    port=WEBAPP_PORT,
+)
