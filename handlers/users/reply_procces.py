@@ -1,7 +1,6 @@
 import logging
 import typing
 
-import txt as txt
 from aiogram.utils.callback_data import CallbackData
 from aiogram.dispatcher.filters import Command
 from aiogram.types import Message, CallbackQuery
@@ -33,16 +32,16 @@ from keyboards.inline.covid_parser import list5
 from keyboards.inline.cul_parser import cul
 from keyboards.inline.events_parser import events
 from keyboards.inline.polit_parser import polit
+#from keyboards.inline.shengen_articles_parser import shengen_articels
+from keyboards.inline.trade_parser import trade_articles
 from keyboards.inline.shengen_articles_parser import shengen_articels
-from keyboards.inline.trade_parser import trade_articels
 
 dp.message_handler()
 
 
-
 @dp.message_handler(Command("start"))  # made introduction and logic of collecting user's data
 async def show_items(message: Message):
-
+    logging.warning(f'Recieved a message from {message.from_user}')
     await message.answer(
         text="Доброго времени суток, юзеры.\nДанный бот призван облегчить ваш процесс работы с посольством Чешской Республики в Москве \n"
              "Для начала работы выберете топик снизу", reply_markup=start)
@@ -78,7 +77,6 @@ async def viza_start(call: CallbackQuery):
     await call.answer(cache_time=60)
     callback_data = call.data
     logging.info(f"{callback_data=}")
-
     await call.message.answer("Визовая информация",
                               reply_markup=viza_info)
 

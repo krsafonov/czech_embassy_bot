@@ -1,12 +1,20 @@
-from loader import bot
+def set_hook():
+    import asyncio
+    from config import HEROKU_APP_NAME, WEBHOOK_URL, BOT_TOKEN
+    from aiogram import Bot
+    bot = Bot(token=BOT_TOKEN)
+
+    async def hook_set():
+        if not HEROKU_APP_NAME:
+            print('You have forgot to set HEROKU_APP_NAME')
+            quit()
+        await bot.set_webhook(WEBHOOK_URL)
+        print(await bot.get_webhook_info())
+
+    asyncio.run(hook_set())
+    bot.close()
 
 
-async def on_shutdown(dp):
-    await bot.close()
-
-
-if __name__ == '__main__':
-    from aiogram import executor
-    from handlers import dp
-
-    executor.start_polling(dp, on_shutdown=on_shutdown)
+from loader import load
+from handlers import dp
+load()

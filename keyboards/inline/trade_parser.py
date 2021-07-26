@@ -1,3 +1,5 @@
+def trade_articles():
+    pass
 import requests
 
 
@@ -11,6 +13,3 @@ headers = data.find_all("h2", {"class": "article_title"})
 trade_articels = {}
 for i in headers:
     trade_articels[i.getText()] = "https://www.mzv.cz" + i.a["href"]
-
-
-
