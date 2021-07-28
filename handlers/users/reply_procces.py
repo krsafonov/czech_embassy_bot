@@ -27,6 +27,7 @@ from keyboards.inline.sport_paser import sport
 from keyboards.inline.viza_info_parse import content_viza
 from keyboards.inline.war_parser import c, content1
 from keyboards.inline.basic_parser import basic_content
+from keyboards.inline.educational_parser import ed_content
 from loader import dp, bot
 
 from keyboards.inline.covid_parser import list5
@@ -405,7 +406,7 @@ async def sub(call: CallbackQuery):
     callback_data = call.data
     logging.info(f"{callback_data=}")
 
-    await call.message.answer(content1,
+    await call.message.answer(ed_content,
                               reply_markup=get_back_from_education)
 
 

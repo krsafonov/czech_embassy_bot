@@ -5,10 +5,12 @@ r = requests.get("https://www.mzv.cz/moscow/ru/vizy_i_konsulskaja/vizovaja/dolgo
 r.encoding = 'utf-8-sig'
 from bs4 import BeautifulSoup
 data = BeautifulSoup(r.content, features='html.parser')
-content1 = data.findAll("div", class_ = "article_body")
-dick = []
-for i in content1:
-    dick.append({
-        "titel": data.find("p", class_ = "article_body").get_text(strip=True)
-    })
-print(titel)
+content = data.find("div", {"class": "article_body"})
+ed_content = ""
+for i in content:
+    try:
+        ed_content+=i.text
+    except:
+        pass
+print(ed_content)
+
