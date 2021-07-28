@@ -10,6 +10,7 @@ from aiogram import types
 from handlers.users.bis_parser import bis
 from handlers.users.long_list_parser import long_list
 from handlers.users.news_parser import text_link_headers
+from keyboards.inline.about_parser import about_content
 from keyboards.inline.blanks import message
 from keyboards.inline.calback_data import get_callback
 from keyboards.inline.buttons import start, long_term, covid_measures, viza2_info, \
@@ -357,14 +358,14 @@ async def sub(call: CallbackQuery):
 
 
 
-"""@dp.callback_query_handler(text_contains="about")#made callback for button which gives about's content
+@dp.callback_query_handler(text_contains="about")#made callback for button which gives about's content
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
     callback_data = call.data
     logging.info(f"{callback_data=}")
 
-    await call.message.answer(None,
-                              reply_markup=back_to_another)"""
+    await call.message.answer(about_content,
+                              reply_markup=back_to_another)
 
 
 @dp.callback_query_handler(text_contains="startback")
