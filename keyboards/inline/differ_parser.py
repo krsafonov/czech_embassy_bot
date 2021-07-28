@@ -5,7 +5,11 @@ r = requests.get(url)
 r.encoding = 'utf-8-sig'
 from bs4 import BeautifulSoup
 data = BeautifulSoup(r.text, features='html.parser')
-differ = []
+differ = ""
 content = data.find_all("div", {"class": "article_body"})
 for i in content:
-    differ.append(i)
+    try:
+        differ+=i.text
+    except:
+        pass
+print(differ)
