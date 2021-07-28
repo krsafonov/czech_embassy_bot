@@ -1,6 +1,6 @@
 import requests
 
-url = "https://www.mzv.cz/moscow/ru/vizy_i_konsulskaja/index.html"
+url = "https://www.mzv.cz/moscow/ru/vizy_i_konsulskaja/vizovaja/index.html"
 r = requests.get(url)
 r.encoding = 'utf-8-sig'
 from bs4 import BeautifulSoup

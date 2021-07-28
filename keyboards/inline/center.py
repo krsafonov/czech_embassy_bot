@@ -12,4 +12,4 @@ for i in center:
         center_c+=i.text
     except:
         pass
-print(center_c)
+
