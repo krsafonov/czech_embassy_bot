@@ -142,8 +142,7 @@ backtovizainfo1 = InlineKeyboardMarkup(row_width=2)
 aback12 = InlineKeyboardButton(text="Вернуться в визовую информацию", callback_data=get_callback.new(item_name="aback1"))
 backtovizainfo1.insert(aback12)
 
-cz = InlineKeyboardMarkup(row_width=2)
-feed = InlineKeyboardButton(text="def", callback_data=callback.add)
+
 
 """viza_info2 = InlineKeyboardMarkup(row_width=2)#made modified keyboard for buttons for getting back from shengen
 
