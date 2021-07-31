@@ -26,7 +26,7 @@ from keyboards.inline.fee import fee_content, fee_list
 from keyboards.inline.long_living_parser import long
 from keyboards.inline.sport_paser import sport
 from keyboards.inline.viza_info_parse import content_viza
-from keyboards.inline.war_parser import c, content1, war_content
+from keyboards.inline.war_parser import content1, war_content
 from keyboards.inline.basic_parser import basic_content
 from keyboards.inline.educational_parser import ed_content
 from loader import dp, bot
