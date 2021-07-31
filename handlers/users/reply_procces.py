@@ -56,11 +56,9 @@ async def huge(message: Message):
     latest_msg = await message.answer('ну привет')"""
 
 
+x  = "dick is co cool and huge "
 
-
-
-
-
+print(x          )
 
 @dp.callback_query_handler(text_contains="basic info")
 async def viza_start(call: CallbackQuery):
@@ -281,11 +279,12 @@ async def sub(call: CallbackQuery):
     callback_data = call.data
     logging.info(f"{callback_data=}")
     text = ""
-    for i in list5:
-        text += i +"("+ list5[i]+")\n"+'\n'
-
+    for n, i in enumerate(list5):
+        text += str(n+1)+". "+ i + "\n("+ list5[i]+")\n \n"
     await call.message.answer(text,
                               reply_markup=back_to_start)
+    await call.message.answer("Выберете статью",
+                              reply_markup=menu)
 
 
 
