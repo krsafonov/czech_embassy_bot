@@ -18,4 +18,3 @@ for i in content1:
         war_content+=i.text
     except:
         pass
-print(war_content)

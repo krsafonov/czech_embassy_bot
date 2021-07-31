@@ -12,4 +12,3 @@ for i in content:
         differ+=i.text
     except:
         pass
-print(differ)

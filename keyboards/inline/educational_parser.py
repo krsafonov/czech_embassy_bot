@@ -12,5 +12,5 @@ for i in content:
         ed_content+=i.text
     except:
         pass
-print(ed_content)
+
 

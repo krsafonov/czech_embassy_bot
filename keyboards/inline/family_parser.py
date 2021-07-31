@@ -12,4 +12,4 @@ for i in content:
         family+=i.text
     except:
         pass
-print(family)
+

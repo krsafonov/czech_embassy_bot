@@ -31,7 +31,7 @@ from keyboards.inline.basic_parser import basic_content
 from keyboards.inline.educational_parser import ed_content
 from loader import dp, bot
 
-from keyboards.inline.covid_parser import list5
+from keyboards.inline.covid_parser import list5, article_content
 from keyboards.inline.cul_parser import cul
 from keyboards.inline.events_parser import events
 from keyboards.inline.polit_parser import polit
@@ -49,16 +49,64 @@ async def show_items(message: Message):
         text="Доброго времени суток, юзеры.\nДанный бот призван облегчить ваш процесс работы с посольством Чешской Республики в Москве \n"
              "Для начала работы выберете топик снизу", reply_markup=start)
 
-"""@dp.message_handler(text_contains="1")
+@dp.message_handler(text_contains="1")
 async def huge(message: Message):
     global latest_msg
     await latest_msg.delete_reply_markup()
-    latest_msg = await message.answer('ну привет')"""
+    latest_msg = await message.answer(article_content)
 
 
-x  = "dick is co cool and huge "
+@dp.message_handler(text_contains="2")
+async def huge(message: Message):
+    global latest_msg
+    await latest_msg.delete_reply_markup()
+    latest_msg = await message.answer(article_content)
 
-print(x          )
+
+@dp.message_handler(text_contains="3")
+async def huge(message: Message):
+    global latest_msg
+    await latest_msg.delete_reply_markup()
+    latest_msg = await message.answer(article_content)
+
+@dp.message_handler(text_contains="4")
+async def huge(message: Message):
+    global latest_msg
+    await latest_msg.delete_reply_markup()
+    latest_msg = await message.answer(article_content)
+
+@dp.message_handler(text_contains="6")
+async def huge(message: Message):
+    global latest_msg
+    await latest_msg.delete_reply_markup()
+    latest_msg = await message.answer(article_content)
+
+
+@dp.message_handler(text_contains="7")
+async def huge(message: Message):
+    global latest_msg
+    await latest_msg.delete_reply_markup()
+    latest_msg = await message.answer(article_content)
+
+@dp.message_handler(text_contains="8")
+async def huge(message: Message):
+    global latest_msg
+    await latest_msg.delete_reply_markup()
+    latest_msg = await message.answer(article_content)
+
+
+@dp.message_handler(text_contains="9")
+async def huge(message: Message):
+    global latest_msg
+    await latest_msg.delete_reply_markup()
+    latest_msg = await message.answer(article_content)
+
+@dp.message_handler(text_contains="10")
+async def huge(message: Message):
+    global latest_msg
+    await latest_msg.delete_reply_markup()
+    latest_msg = await message.answer(article_content)
+
 
 @dp.callback_query_handler(text_contains="basic info")
 async def viza_start(call: CallbackQuery):

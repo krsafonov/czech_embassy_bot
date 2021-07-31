@@ -12,4 +12,3 @@ for i in content:
         bis+=i.text
     except:
         pass
-print(bis)
