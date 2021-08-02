@@ -98,7 +98,7 @@ viza_info = InlineKeyboardMarkup(row_width=3)#made keyboard from bu
 
 long_term = InlineKeyboardButton(text="долгосрочная виза", callback_data=get_callback.new(item_name="long term viza"))
 viza_info.insert(long_term)
-0
+
 shengen = InlineKeyboardButton(text="шенгенская виза", callback_data=get_callback.new(item_name="shengen"))
 viza_info.insert(shengen)
 

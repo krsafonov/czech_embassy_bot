@@ -309,9 +309,6 @@ async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
     callback_data = call.data
     logging.info(f"{callback_data=}")
-    text = ""
-    for i in list5:
-        text += i +"("+ list5[i]+")\n"+'\n'
 
     await call.message.answer("Выберете направление",
                               reply_markup=another2)
@@ -328,7 +325,7 @@ async def sub(call: CallbackQuery):
     logging.info(f"{callback_data=}")
     text = ""
     for n, i in enumerate(list5):
-        text += str(n+1)+". "+ i + "\n("+ list5[i]+")\n \n"
+        text += str(n+1)+". "+ i + "\n(list5[i])+\n \n"
     await call.message.answer(text,
                               reply_markup=back_to_start)
     await call.message.answer("Выберете статью",
@@ -486,8 +483,8 @@ async def sub(call: CallbackQuery):
     callback_data = call.data
     logging.info(f"{callback_data=}")
     text = ""
-    for i in constant:
-        text+=i+"("+constant[i]+")"+"\n"+"\n"
+    for n, i in enumerate (constant):
+        text+= str(n+1) +". "+ i+"\n (+constant[i]+)\n\n"
     await call.message.answer(text,
                               reply_markup=chengen_back)
 
