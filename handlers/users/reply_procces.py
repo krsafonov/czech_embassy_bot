@@ -44,9 +44,10 @@ dp.message_handler()
 async def send_msg(text,message):
     if len(text)>4096:
         for i in range(0, len(text), 4096):
-            message.answer(text=text[i:i+4096])
+            await message.answer(text=text[i:i+4096])
     else:
-        message.answer(text=text)
+        await message.answer(text=text)
+
 
 
 @dp.message_handler(Command("start"))  # made introduction and logic of collecting user's data
