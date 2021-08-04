@@ -41,6 +41,14 @@ from keyboards.inline.shengen_articles_parser import shengen_articels
 dp.message_handler()
 
 
+def send_msg(text,message):
+    if len(text)>4096:
+        for i in range(0, len(text), 4096):
+            await message.answer(text=text[i:i+4096])
+    else:
+        await message.answer(text=text)
+
+
 @dp.message_handler(Command("start"))  # made introduction and logic of collecting user's data
 async def show_items(message: Message):
     logging.warning(f'Recieved a message from {message.from_user}')
@@ -50,20 +58,20 @@ async def show_items(message: Message):
 
 @dp.message_handler(text_contains="1")
 async def huge(message: Message):
-    await message.answer(get_covid_article(1))
+    send_msg(get_covid_article(1), message)
 
 
 @dp.message_handler(text_contains="2")
 async def huge(message: Message):
-    await message.answer(get_covid_article(2))
+    send_msg(get_covid_article(2), message)
 
 @dp.message_handler(text_contains="3")
 async def huge(message: Message):
-    await message.answer(get_covid_article(3))
+    send_msg(get_covid_article(3), message)
 
 @dp.message_handler(text_contains="4")
 async def huge(message: Message):
-    await message.answer(get_covid_article(4))
+    send_msg(get_covid_article(4), message)
 
 
 
@@ -296,7 +304,7 @@ async def sub(call: CallbackQuery):
     logging.info(f"{callback_data=}")
     text = ""
     for n, i in enumerate(list5):
-        text += str(n+1)+". "+ i + "\n(list5[i])+\n \n"
+        text += str(n+1)+". "+ i + "\n\n"
     await call.message.answer(text,
                               reply_markup=back_to_start)
     await call.message.answer("Выберете статью",
