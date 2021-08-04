@@ -1,42 +1,41 @@
 import logging
-import typing
 
-from aiogram.utils.callback_data import CallbackData
+
+
 from aiogram.dispatcher.filters import Command
 from aiogram.types import Message, CallbackQuery
 
-from aiogram import types
+
 
 from handlers.users.bis_parser import bis
 from handlers.users.long_list_parser import long_list
 from handlers.users.news_parser import text_link_headers
 from keyboards.inline.about_parser import about_content
 from keyboards.inline.blanks import message
-from keyboards.inline.calback_data import get_callback
-from keyboards.inline.buttons import start, long_term, covid_measures, viza2_info, \
-    chengen_back, viza_info, transformed_viza_info, get_notified, \
-    get_back_to_start_from_covid, get_back_to_mailing, another1, back_to_another, \
-    backtovizainfo1, back_to_long_term, start2, menu, back_to_start, another2, get_back_from_education
-from keyboards.inline.center import center, center_c
+
+from keyboards.inline.buttons import start, long_term, chengen_back, viza_info, get_notified, \
+    get_back_to_mailing, back_to_another, \
+    backtovizainfo1, back_to_long_term, menu, back_to_start, another2, get_back_from_education, backtostart1
+from keyboards.inline.center import center_c
 from keyboards.inline.constant_living_parser import constant
-from keyboards.inline.country_list_parser import content, clist
+from keyboards.inline.country_list_parser import clist
 from keyboards.inline.differ_parser import differ
 from keyboards.inline.family_parser import family
-from keyboards.inline.fee import fee_content, fee_list
+from keyboards.inline.fee import fee_list
 from keyboards.inline.long_living_parser import long
 from keyboards.inline.sport_paser import sport
 from keyboards.inline.viza_info_parse import content_viza
-from keyboards.inline.war_parser import content1, war_content
+from keyboards.inline.war_parser import war_content
 from keyboards.inline.basic_parser import basic_content
 from keyboards.inline.educational_parser import ed_content
-from loader import dp, bot
+from loader import dp
 
-from keyboards.inline.covid_parser import list5, article_content
+from keyboards.inline.covid_parser import list5, article_content, get_covid_article
 from keyboards.inline.cul_parser import cul
 from keyboards.inline.events_parser import events
 from keyboards.inline.polit_parser import polit
 #from keyboards.inline.shengen_articles_parser import shengen_articels
-from keyboards.inline.trade_parser import trade_articles
+from keyboards.inline.trade_parser import trade_articels
 from keyboards.inline.shengen_articles_parser import shengen_articels
 
 dp.message_handler()
@@ -53,14 +52,14 @@ async def show_items(message: Message):
 async def huge(message: Message):
     global latest_msg
     await latest_msg.delete_reply_markup()
-    latest_msg = await message.answer(article_content)
+    latest_msg = await message.answer(get_covid_article(1))
 
 
 @dp.message_handler(text_contains="2")
 async def huge(message: Message):
     global latest_msg
     await latest_msg.delete_reply_markup()
-    latest_msg = await message.answer(article_content)
+    latest_msg = await message.answer(get_covid_article(2))
 
 
 @dp.message_handler(text_contains="3")
@@ -167,6 +166,18 @@ async def sub(call: CallbackQuery):
 
     await call.message.answer("Выберете направление",
                               reply_markup=get_notified)
+
+@dp.callback_query_handler(text_contains="backrt")
+async def sub(call: CallbackQuery):
+    await call.answer(cache_time=60)
+    callback_data = call.data
+    logging.info(f"{callback_data=}")
+
+    await call.message.answer("Выберете направление",
+                              reply_markup=start)
+
+
+
 
 
 @dp.callback_query_handler(text_contains="long_list")

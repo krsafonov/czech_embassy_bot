@@ -11,15 +11,17 @@ for i in content:
     list5[i.getText()] = "https://www.mzv.cz" + i.a["href"]
 
 
-url = list5[i]
-r = requests.get(url)
-r.encoding = 'utf-8-sig'
-from bs4 import BeautifulSoup
-data = BeautifulSoup(r.text, features='html.parser')
-article_content = ""
-content = data.find_all("div", {"class": "article_body"})
-for i in content:
-    try:
-        article_content+=i.text
-    except:
-        pass
+def get_covid_article(num):
+    url = list(list5.values())[num-1]
+    r = requests.get(url)
+    r.encoding = 'utf-8-sig'
+    from bs4 import BeautifulSoup
+    data = BeautifulSoup(r.text, features='html.parser')
+    article_content = ""
+    content = data.find_all("div", {"class": "article_body"})
+    for i in content:
+        try:
+            article_content+=i.text
+        except:
+            pass
+    return article_content

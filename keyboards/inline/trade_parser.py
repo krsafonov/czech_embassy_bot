@@ -1,5 +1,3 @@
-def trade_articles():
-    pass
 import requests
 
 
