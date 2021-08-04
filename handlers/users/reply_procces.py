@@ -44,9 +44,9 @@ dp.message_handler()
 def send_msg(text,message):
     if len(text)>4096:
         for i in range(0, len(text), 4096):
-            await message.answer(text=text[i:i+4096])
+            message.answer(text=text[i:i+4096])
     else:
-        await message.answer(text=text)
+        message.answer(text=text)
 
 
 @dp.message_handler(Command("start"))  # made introduction and logic of collecting user's data
@@ -58,20 +58,20 @@ async def show_items(message: Message):
 
 @dp.message_handler(text_contains="1")
 async def huge(message: Message):
-    send_msg(get_covid_article(1), message)
+    await send_msg(get_covid_article(1), message)
 
 
 @dp.message_handler(text_contains="2")
 async def huge(message: Message):
-    send_msg(get_covid_article(2), message)
+    await send_msg(get_covid_article(2), message)
 
 @dp.message_handler(text_contains="3")
 async def huge(message: Message):
-    send_msg(get_covid_article(3), message)
+    await send_msg(get_covid_article(3), message)
 
 @dp.message_handler(text_contains="4")
 async def huge(message: Message):
-    send_msg(get_covid_article(4), message)
+    await send_msg(get_covid_article(4), message)
 
 
 
