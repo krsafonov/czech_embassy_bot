@@ -50,61 +50,21 @@ async def show_items(message: Message):
 
 @dp.message_handler(text_contains="1")
 async def huge(message: Message):
-    global latest_msg
-    await latest_msg.delete_reply_markup()
-    latest_msg = await message.answer(get_covid_article(1))
+    await message.answer(get_covid_article(1))
 
 
 @dp.message_handler(text_contains="2")
 async def huge(message: Message):
-    global latest_msg
-    await latest_msg.delete_reply_markup()
-    latest_msg = await message.answer(get_covid_article(2))
-
+    await message.answer(get_covid_article(2))
 
 @dp.message_handler(text_contains="3")
 async def huge(message: Message):
-    global latest_msg
-    await latest_msg.delete_reply_markup()
-    latest_msg = await message.answer(article_content)
+    await message.answer(get_covid_article(3))
 
 @dp.message_handler(text_contains="4")
 async def huge(message: Message):
-    global latest_msg
-    await latest_msg.delete_reply_markup()
-    latest_msg = await message.answer(article_content)
+    await message.answer(get_covid_article(4))
 
-@dp.message_handler(text_contains="6")
-async def huge(message: Message):
-    global latest_msg
-    await latest_msg.delete_reply_markup()
-    latest_msg = await message.answer(article_content)
-
-
-@dp.message_handler(text_contains="7")
-async def huge(message: Message):
-    global latest_msg
-    await latest_msg.delete_reply_markup()
-    latest_msg = await message.answer(article_content)
-
-@dp.message_handler(text_contains="8")
-async def huge(message: Message):
-    global latest_msg
-    await latest_msg.delete_reply_markup()
-    latest_msg = await message.answer(article_content)
-
-
-@dp.message_handler(text_contains="9")
-async def huge(message: Message):
-    global latest_msg
-    await latest_msg.delete_reply_markup()
-    latest_msg = await message.answer(article_content)
-
-@dp.message_handler(text_contains="10")
-async def huge(message: Message):
-    global latest_msg
-    await latest_msg.delete_reply_markup()
-    latest_msg = await message.answer(article_content)
 
 
 @dp.callback_query_handler(text_contains="basic info")
