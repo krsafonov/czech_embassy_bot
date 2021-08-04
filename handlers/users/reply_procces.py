@@ -41,7 +41,7 @@ from keyboards.inline.shengen_articles_parser import shengen_articels
 dp.message_handler()
 
 
-def send_msg(text,message):
+async def send_msg(text,message):
     if len(text)>4096:
         for i in range(0, len(text), 4096):
             message.answer(text=text[i:i+4096])
