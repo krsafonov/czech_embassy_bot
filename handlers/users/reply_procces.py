@@ -30,7 +30,7 @@ from keyboards.inline.basic_parser import basic_content
 from keyboards.inline.educational_parser import ed_content
 from loader import dp
 
-from keyboards.inline.covid_parser import list5, article_content, get_covid_article
+from keyboards.inline.covid_parser import list5, get_covid_article
 from keyboards.inline.cul_parser import cul
 from keyboards.inline.events_parser import events
 from keyboards.inline.polit_parser import polit
