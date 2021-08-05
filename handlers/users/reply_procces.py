@@ -118,6 +118,7 @@ async def viza_start(call: CallbackQuery):
     await call.answer(cache_time=60)
     callback_data = call.data
     logging.info(f"{callback_data=}")
+    await message.delete.keyboard_markup()
     await call.message.answer("Визовая информация",
                               reply_markup=viza_info)
 
