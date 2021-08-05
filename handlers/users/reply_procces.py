@@ -57,10 +57,10 @@ async def sub(call: CallbackQuery):
     logging.info(f"{callback_data=}")
     if len(ed_content) > 4096:
         for i in range(0, len(ed_content), 4096):
-            await call.message.answer(ed_content,
+            await call.message.answer(ed_content[i:i+4096],
                                       reply_markup=backtostart1)
     else:
-        await call.message.answer(ed_content,
+        await call.message.answer(text=ed_content,
                                   reply_markup=backtostart1)
 
 
