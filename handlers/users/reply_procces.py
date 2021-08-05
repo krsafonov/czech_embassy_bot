@@ -27,7 +27,7 @@ from keyboards.inline.sport_paser import sport
 from keyboards.inline.viza_info_parse import content_viza
 from keyboards.inline.war_parser import war_content
 from keyboards.inline.basic_parser import basic_content
-from keyboards.inline.educational_parser import ed_content
+
 from loader import dp
 
 from keyboards.inline.covid_parser import list5, get_covid_article
@@ -49,7 +49,18 @@ async def send_msg(text,message):
         await message.answer(text=text)
 
 
+
+d = "https://telegra.ph/Obuchenie-08-05-3"
+
 @dp.callback_query_handler(
+    text_contains="education_cz")  # made callback for button which gets you back from education to long term viza
+async def sub(call: CallbackQuery):
+    await call.answer(cache_time=60)
+    callback_data = call.data
+    logging.info(f"{callback_data=}")
+    await call.message.answer(d,reply_markup=backtostart1)
+
+"""@dp.callback_query_handler(
     text_contains="education_cz")  # made callback for button which gets you back from education to long term viza
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
@@ -61,7 +72,7 @@ async def sub(call: CallbackQuery):
                                       reply_markup=backtostart1)
     else:
         await call.message.answer(text=ed_content,
-                                  reply_markup=backtostart1)
+                                  reply_markup=backtostart1)"""
 
 
 @dp.message_handler(Command("start"))  # made introduction and logic of collecting user's data
