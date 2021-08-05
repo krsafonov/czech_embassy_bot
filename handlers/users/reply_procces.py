@@ -48,7 +48,12 @@ async def send_msg(text,message):
     else:
         await message.answer(text=text)
 
-
+async def send_msg2(text,reply_markup):
+    if len(text)>4096:
+        for i in range(0, len(text), 4096):
+            await message.answer(text=text[i:i+4096],reply_markup=reply_markup)
+    else:
+        await message.answer(text=text, reply_markup=reply_markup)
 
 @dp.message_handler(Command("start"))  # made introduction and logic of collecting user's data
 async def show_items(message: Message):
@@ -81,7 +86,6 @@ async def viza_start(call: CallbackQuery):
     await call.answer(cache_time=60)
     callback_data = call.data
     logging.info(f"{callback_data=}")
-
     await call.message.answer(basic_content,
                               reply_markup=backtostart1)
 
@@ -431,7 +435,7 @@ async def sub(call: CallbackQuery):
     callback_data = call.data
     logging.info(f"{callback_data=}")
 
-    await call.message.answer(ed_content,
+    await send_msg2(ed_content,
                               reply_markup=get_back_from_education)
 
 

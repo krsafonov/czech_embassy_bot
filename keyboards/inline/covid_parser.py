@@ -18,10 +18,11 @@ def get_covid_article(num):
     from bs4 import BeautifulSoup
     data = BeautifulSoup(r.text, features='html.parser')
     article_content = ""
-    content = data.find_all("div", {"class": "article_body"})
-    for i in content:
+    par = list(data.find("div", {"class": "article_body"}).children)
+    for i in par:
         try:
-            article_content+=i.text
+            article_content += i.text
         except:
             pass
+
     return article_content
