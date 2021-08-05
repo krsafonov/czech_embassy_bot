@@ -48,12 +48,22 @@ async def send_msg(text,message):
     else:
         await message.answer(text=text)
 
-async def send_msg2(text,reply_markup):
-    if len(text)>4096:
-        for i in range(0, len(text), 4096):
-            await message.answer(text=text[i:i+4096],reply_markup=reply_markup)
+
+
+@dp.callback_query_handler(
+    text_contains="education_cz")  # made callback for button which gets you back from education to long term viza
+async def sub(call: CallbackQuery):
+    await call.answer(cache_time=60)
+    callback_data = call.data
+    logging.info(f"{callback_data=}")
+    if len(ed_content) > 4096:
+        for i in range(0, len(ed_content), 4096):
+            await call.message.answer(ed_content,
+                                      reply_markup=backtostart1)
     else:
-        await message.answer(text=text, reply_markup=reply_markup)
+        await call.message.answer(ed_content,
+                                  reply_markup=backtostart1)
+
 
 @dp.message_handler(Command("start"))  # made introduction and logic of collecting user's data
 async def show_items(message: Message):
@@ -428,15 +438,7 @@ async def sub(call: CallbackQuery):
                               reply_markup=start)
 
 
-@dp.callback_query_handler(
-    text_contains="education_cz")  # made callback for button which gets you back from education to long term viza
-async def sub(call: CallbackQuery):
-    await call.answer(cache_time=60)
-    callback_data = call.data
-    logging.info(f"{callback_data=}")
 
-    await send_msg2(ed_content,
-                              reply_markup=get_back_from_education)
 
 
 @dp.callback_query_handler(
