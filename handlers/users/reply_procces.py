@@ -49,7 +49,6 @@ async def send_msg(text,message):
         await message.answer(text=text)
 
 
-
 @dp.callback_query_handler(
     text_contains="education_cz")  # made callback for button which gets you back from education to long term viza
 async def sub(call: CallbackQuery):
