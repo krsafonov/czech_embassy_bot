@@ -25,7 +25,7 @@ from keyboards.inline.fee import fee_list
 from keyboards.inline.long_living_parser import long
 from keyboards.inline.sport_paser import sport
 from keyboards.inline.viza_info_parse import content_viza
-from keyboards.inline.war_parser import war_content
+
 from keyboards.inline.basic_parser import basic_content
 
 from loader import dp
@@ -394,14 +394,14 @@ async def sub(call: CallbackQuery):
 
     await call.message.answer(cul,
                               reply_markup=back_to_another)
-
+fr = "https://telegra.ph/CHehi-vo-vtoroj-mirovoj-vojne-08-05"
 @dp.callback_query_handler(text_contains="war")#made callback for button which gives war's content
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
     callback_data = call.data
     logging.info(f"{callback_data=}")
 
-    await call.message.answer(war_content,
+    await call.message.answer(fr,
                               reply_markup=back_to_another)
 
 
