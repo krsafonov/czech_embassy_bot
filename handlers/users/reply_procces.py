@@ -6,6 +6,7 @@ from aiogram.types import Message, CallbackQuery
 from handlers.users.bis_parser import bis
 from handlers.users.long_list_parser import long_list
 from handlers.users.news_parser import text_link_headers
+from keyboards.inline.basic_parser import basic_content
 
 from keyboards.inline.blanks import message
 
@@ -62,8 +63,8 @@ async def show_items(message: Message):
 @dp.callback_query_handler(text_contains="basic info")
 async def viza_start(call: CallbackQuery):
     await call.answer(cache_time=60)
-    basic_content2 = "https://telegra.ph/Konsulskij-otdel-08-06"
-    msg = await call.message.answer(basic_content2, reply_markup=backtostart1)
+
+    msg = await call.message.answer(basic_content, reply_markup=backtostart1)
     global latest_msg
     try:
         await latest_msg.delete()

@@ -12,4 +12,3 @@ for i in content:
 
 
 
-print(events)

@@ -10,5 +10,5 @@ content = str(data.find("div", {"class": "article_body"}))
 title = data.find("h1", {"class": "article_title"})
 
 
-about = create_page(title.text, "\n".join(content.split("\n")[1:-1]))
-print(title)"""
+about = create_page(title.text, "\n".join(content.split("\n")[2:-1]))
+print(content)"""
