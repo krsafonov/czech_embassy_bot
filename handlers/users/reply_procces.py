@@ -337,7 +337,7 @@ async def sub(call: CallbackQuery):
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
 
-    msg = await call.message.answer(c,
+    msg = await call.message.answer(list5,
                               reply_markup=back_to_start)
     global latest_msg
     try:
@@ -439,7 +439,7 @@ async def sub(call: CallbackQuery):
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
 
-    msg = await call.message.answer(about_content,
+    msg = await call.message.answer(about_content.open(),
                               reply_markup=back_to_another)
     global latest_msg
     try:
