@@ -77,12 +77,11 @@ async def viza_start(call: CallbackQuery):
     text = basic_content
     if len(text) > 4096:
         for i in range(0, len(text), 4096):
-            await message.answer(text=text[i:i + 4096])
+            await message.answer(text=text[i:i + 4096], reply_markup=backtostart1)
     else:
-        await message.answer(text=text)
+        await call.message.answer(text=text, reply_markup=backtostart1)
 
-    await call.message.answer(text,
-                              reply_markup=backtostart1)
+
 
 
 
