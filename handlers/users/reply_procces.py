@@ -441,9 +441,9 @@ async def sub(call: CallbackQuery):
     text = basic_content
     if len(text) > 4096:
         for i in range(0, len(text), 4096):
-            await message.answer(text=text[i:i + 4096], reply_markup=backtovizainfo1)
+            await call.message.answer(text=text[i:i + 4096], reply_markup=backtovizainfo1)
     else:
-        await message.answer(text=text, reply_markup=backtovizainfo1)
+        await call.message.answer(text=text, reply_markup=backtovizainfo1)
 
 
 
