@@ -60,8 +60,8 @@ async def viza_start(call: CallbackQuery):
     callback_data = call.data
     logging.info(f"{callback_data=}")
     basic_content2 = "https://telegra.ph/Konsulskij-otdel-08-06"
-    text = basic_content2
-    await message.answer(text, reply_markup=backtostart1)
+
+    await call.message.answer(basic_content2, reply_markup=backtostart1)
 
 
 @dp.callback_query_handler(
