@@ -8,6 +8,7 @@ from handlers.users.bis_parser import bis
 from handlers.users.long_list_parser import long_list
 from handlers.users.news_parser import text_link_headers
 from keyboards.inline.about_parser import about_content
+from keyboards.inline.basic_parser import basic_content
 from keyboards.inline.blanks import message
 
 from keyboards.inline.buttons import start, long_term, chengen_back, viza_info, get_notified, \
@@ -73,8 +74,8 @@ async def viza_start(call: CallbackQuery):
     await call.answer(cache_time=60)
     callback_data = call.data
     logging.info(f"{callback_data=}")
-    basic_content = "https://telegra.ph/Konsulskij-otdel-08-06"
-    text = basic_content
+    basic_content2 = "https://telegra.ph/Konsulskij-otdel-08-06"
+    text = basic_content2
     await message.answer(text, reply_markup=backtostart1)
 
 
@@ -187,14 +188,14 @@ async def sub(call: CallbackQuery):
                               reply_markup=viza_info)
 
 
-@dp.callback_query_handler(text_contains="basic")
+"""@dp.callback_query_handler(text_contains="basic")
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
     callback_data = call.data
     logging.info(f"{callback_data=}")
 
     await call.message.answer(content_viza,
-                              reply_markup=backtovizainfo1)
+                              reply_markup=backtovizainfo1)"""
 
 @dp.callback_query_handler(text_contains="getbacklong")
 async def sub(call: CallbackQuery):
@@ -437,9 +438,14 @@ async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
     callback_data = call.data
     logging.info(f"{callback_data=}")
+    text = basic_content
+    if len(text) > 4096:
+        for i in range(0, len(text), 4096):
+            await message.answer(text=text[i:i + 4096], reply_markup=backtovizainfo1)
+    else:
+        await message.answer(text=text, reply_markup=backtovizainfo1)
 
-    await call.message.answer(message,
-                              reply_markup=backtovizainfo1)
+
 
 
 @dp.callback_query_handler(text_contains="constant")
