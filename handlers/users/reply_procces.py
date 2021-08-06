@@ -438,14 +438,8 @@ async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
     callback_data = call.data
     logging.info(f"{callback_data=}")
-    text = basic_content
-    if len(text) > 4096:
-        for i in range(0, len(text), 4096):
-            await call.message.answer(text=text[i:i + 4096], reply_markup=backtovizainfo1)
-    else:
-        await call.message.answer(text=text, reply_markup=backtovizainfo1)
-
-
+    basic_content = "https://telegra.ph/Osnovnaya-vizovaya-informaciya-08-06"
+    await call.message.answer(basic_content, reply_markup=backtovizainfo1)
 
 
 @dp.callback_query_handler(text_contains="constant")
