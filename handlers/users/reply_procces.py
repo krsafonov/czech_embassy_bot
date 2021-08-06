@@ -3,9 +3,7 @@ import logging
 
 
 from aiogram.dispatcher.filters import Command
-from aiogram.types import Message, CallbackQuery
-
-
+from aiogram.types import Message, CallbackQuery, ReplyKeyboardRemove
 
 from handlers.users.bis_parser import bis
 from handlers.users.long_list_parser import long_list
@@ -105,10 +103,10 @@ async def viza_start(call: CallbackQuery):
     await call.answer(cache_time=60)
     callback_data = call.data
     logging.info(f"{callback_data=}")
-    await message.delete_reply_markup()
+
     await call.message.answer("Визовая информация",
                               reply_markup=viza_info)
-
+    await call.message.answer(reply_markup=ReplyKeyboardRemove())
 
 
 
