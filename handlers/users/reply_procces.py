@@ -32,20 +32,8 @@ from keyboards.inline.polit_parser import polit
 from keyboards.inline.trade_parser import trade_articels
 from keyboards.inline.shengen_articles_parser import shengen_articels
 
+
 dp.message_handler()
-
-
-async def send_msg(text,message):
-    async def sub(call: CallbackQuery):
-        await call.answer(cache_time=60)
-        callback_data = call.data
-        logging.info(f"{callback_data=}")
-    if len(text)>4096:
-        for i in range(0, len(text), 4096):
-            await message.answer(text=text[i:i+4096])
-    else:
-        await message.answer(text=text)
-
 
 
 @dp.callback_query_handler(
@@ -66,7 +54,6 @@ async def show_items(message: Message):
              "Для начала работы выберете топик снизу", reply_markup=start)
 
 
-
 @dp.callback_query_handler(text_contains="basic info")
 async def viza_start(call: CallbackQuery):
     await call.answer(cache_time=60)
@@ -75,10 +62,6 @@ async def viza_start(call: CallbackQuery):
     basic_content2 = "https://telegra.ph/Konsulskij-otdel-08-06"
     text = basic_content2
     await message.answer(text, reply_markup=backtostart1)
-
-
-
-
 
 
 @dp.callback_query_handler(
@@ -90,12 +73,6 @@ async def viza_start(call: CallbackQuery):
 
     await call.message.answer("Визовая информация",
                               reply_markup=viza_info)
-
-
-
-
-
-
 
 
 @dp.callback_query_handler(
@@ -121,6 +98,7 @@ async def sub(call: CallbackQuery):
     await call.message.answer(text,
                               reply_markup=get_back_to_mailing)
 
+
 @dp.callback_query_handler(text_contains="subagain")
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
@@ -129,6 +107,7 @@ async def sub(call: CallbackQuery):
 
     await call.message.answer("Выберете направление",
                               reply_markup=get_notified)
+
 
 @dp.callback_query_handler(text_contains="backrt")
 async def sub(call: CallbackQuery):
@@ -140,9 +119,6 @@ async def sub(call: CallbackQuery):
                               reply_markup=start)
 
 
-
-
-
 @dp.callback_query_handler(text_contains="long_list")
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
@@ -151,6 +127,7 @@ async def sub(call: CallbackQuery):
     text = ""
     for i in long_list:
         text+=i+"("+long_list[i]+")""\n""\n"
+
     await call.message.answer(text,
                               reply_markup=get_back_from_education)
 
@@ -163,7 +140,6 @@ async def sub(call: CallbackQuery):
 
     await call.message.answer(bis,
                               reply_markup=get_back_from_education)
-
 
 
 @dp.callback_query_handler(text_contains="blanks")
@@ -185,15 +161,6 @@ async def sub(call: CallbackQuery):
     await call.message.answer("Визовая информация",
                               reply_markup=viza_info)
 
-
-"""@dp.callback_query_handler(text_contains="basic")
-async def sub(call: CallbackQuery):
-    await call.answer(cache_time=60)
-    callback_data = call.data
-    logging.info(f"{callback_data=}")
-
-    await call.message.answer(content_viza,
-                              reply_markup=backtovizainfo1)"""
 
 @dp.callback_query_handler(text_contains="getbacklong")
 async def sub(call: CallbackQuery):
@@ -224,7 +191,6 @@ async def sub(call: CallbackQuery):
     await call.message.answer(family, reply_markup=backtovizainfo1)
 
 
-
 @dp.callback_query_handler(text_contains="how differ1")
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
@@ -234,6 +200,7 @@ async def sub(call: CallbackQuery):
     await call.message.answer(differ,
                               reply_markup=back_to_long_term)
 
+
 @dp.callback_query_handler(text_contains="56")
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
@@ -242,7 +209,6 @@ async def sub(call: CallbackQuery):
 
     await call.message.answer("Долгосрочная виза",
                               reply_markup=long_term)
-
 
 
 @dp.callback_query_handler(text_contains="to subscribe")  # made call back for buttton which gives you list of news
@@ -266,7 +232,6 @@ async def sub(call: CallbackQuery):
                               reply_markup=long_term)
 
 
-
 @dp.callback_query_handler(text_contains="back_to_start")
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
@@ -277,7 +242,6 @@ async def sub(call: CallbackQuery):
                               reply_markup=start)
 
 
-
 @dp.callback_query_handler(text_contains="another2")
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
@@ -286,10 +250,6 @@ async def sub(call: CallbackQuery):
 
     await call.message.answer("Выберете направление",
                               reply_markup=another2)
-
-
-
-
 
 
 @dp.callback_query_handler(text_contains="covid")
@@ -304,9 +264,6 @@ async def sub(call: CallbackQuery):
                               reply_markup=back_to_start)
 
 
-
-
-
 @dp.callback_query_handler(text_contains="getback")  # made callback for button get back to start
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
@@ -315,7 +272,6 @@ async def sub(call: CallbackQuery):
 
     await call.message.answer('Выберете направление',
                               reply_markup=start)
-
 
 
 @dp.callback_query_handler(text_contains="events")#made callback for button which gives event's content
@@ -352,8 +308,6 @@ async def sub(call: CallbackQuery):
                               reply_markup=back_to_another)
 
 
-
-
 @dp.callback_query_handler(text_contains="cul")#made callback for button which gives culture's content
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
@@ -363,6 +317,7 @@ async def sub(call: CallbackQuery):
     await call.message.answer(cul,
                               reply_markup=back_to_another)
 
+
 @dp.callback_query_handler(text_contains="war")#made callback for button which gives war's content
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
@@ -371,7 +326,6 @@ async def sub(call: CallbackQuery):
     fr = "https://telegra.ph/CHehi-vo-vtoroj-mirovoj-vojne-08-05"
     await call.message.answer(fr,
                               reply_markup=back_to_another)
-
 
 
 @dp.callback_query_handler(text_contains="about")#made callback for button which gives about's content
@@ -394,8 +348,6 @@ async def sub(call: CallbackQuery):
                               reply_markup=start)
 
 
-
-
 @dp.callback_query_handler(text_contains="aback")#made callback for all another buttons
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
@@ -414,9 +366,6 @@ async def sub(call: CallbackQuery):
 
     await call.message.answer("Вы успешно отписались",
                               reply_markup=start)
-
-
-
 
 
 @dp.callback_query_handler(
@@ -493,6 +442,7 @@ async def sub(call: CallbackQuery):
     await call.message.answer(center_c,
                               reply_markup=chengen_back)
 
+
 @dp.callback_query_handler(text_contains="another")
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
@@ -501,9 +451,6 @@ async def sub(call: CallbackQuery):
 
     await call.message.answer("Выберете направление",
                               reply_markup=another2)
-
-
-
 
 
 @dp.callback_query_handler(text_contains="bacs")
@@ -534,7 +481,6 @@ async def sub(call: CallbackQuery):
 
     await call.message.answer("Выберете направление",
                               reply_markup=start)
-
 
 
 @dp.callback_query_handler(
