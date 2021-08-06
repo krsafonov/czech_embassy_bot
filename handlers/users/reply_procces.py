@@ -6,7 +6,7 @@ from aiogram.types import Message, CallbackQuery
 from handlers.users.bis_parser import bis
 from handlers.users.long_list_parser import long_list
 from handlers.users.news_parser import text_link_headers
-from keyboards.inline.about_parser import about
+
 from keyboards.inline.blanks import message
 
 from keyboards.inline.buttons import start, long_term, chengen_back, viza_info, get_notified, \
@@ -23,7 +23,7 @@ from keyboards.inline.sport_paser import sport
 
 from loader import dp
 
-from keyboards.inline.covid_parser import list5, get_covid_article, c
+from keyboards.inline.covid_parser import list5
 from keyboards.inline.cul_parser import cul
 from keyboards.inline.events_parser import events
 from keyboards.inline.polit_parser import polit
@@ -40,7 +40,7 @@ latest_msg = None
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
 
-    msg = await call.message.answer(educational_content, reply_markup=get_back_from_education)
+    msg = await call.message.answer(educational_content.open(), reply_markup=get_back_from_education)
     global latest_msg
     try:
         await latest_msg.delete()

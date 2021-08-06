@@ -10,3 +10,4 @@ title = data.find("h1", {"class": "article_title"})
 
 
 educational_content = create_page(title.text, "\n".join(content.split("\n")[1:-1]))
+print(content)
