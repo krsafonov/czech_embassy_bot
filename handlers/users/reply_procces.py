@@ -11,7 +11,7 @@ from keyboards.inline.blanks import message
 
 from keyboards.inline.buttons import start, long_term, chengen_back, viza_info, get_notified, \
     get_back_to_mailing, back_to_another, \
-    backtovizainfo1, back_to_long_term, menu, back_to_start, another2, get_back_from_education, backtostart1
+    backtovizainfo1, back_to_long_term, back_to_start, another2, backtostart1
 from keyboards.inline.center import center_c
 from keyboards.inline.constant_living_parser import constant
 from keyboards.inline.country_list_parser import clist
@@ -40,7 +40,7 @@ latest_msg = None
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
 
-    msg = await call.message.answer(educational_content, reply_markup=get_back_from_education)
+    msg = await call.message.answer(educational_content, reply_markup=back_to_long_term)
     global latest_msg
     try:
         await latest_msg.delete()
@@ -155,7 +155,7 @@ async def sub(call: CallbackQuery):
         text += i + "(" + long_list[i] + ")""\n""\n"
 
     msg = await call.message.answer(text,
-                              reply_markup=get_back_from_education)
+                              reply_markup=back_to_long_term)
     global latest_msg
     try:
         await latest_msg.delete()
@@ -169,7 +169,7 @@ async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
 
     msg = await call.message.answer(bis,
-                              reply_markup=get_back_from_education)
+                              reply_markup=back_to_long_term)
     global latest_msg
     try:
         await latest_msg.delete()
@@ -238,7 +238,7 @@ async def sub(call: CallbackQuery):
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
     family = "https://telegra.ph/S-celyu-soedineniya-semi-08-06"
-    msg = await call.message.answer(family, reply_markup=backtovizainfo1)
+    msg = await call.message.answer(family, reply_markup=back_to_long_term)
     global latest_msg
     try:
         await latest_msg.delete()
