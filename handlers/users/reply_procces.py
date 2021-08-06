@@ -82,9 +82,7 @@ async def huge(message: Message):
 
 @dp.message_handler(text_contains="4")
 async def huge(message: Message):
-    await send_msg(get_covid_article(4), message)
-
-
+    await send_msg(get_covid_article(4), message)"""
 
 @dp.callback_query_handler(text_contains="basic info")
 async def viza_start(call: CallbackQuery):
@@ -94,7 +92,6 @@ async def viza_start(call: CallbackQuery):
     await call.message.answer(basic_content,
                               reply_markup=backtostart1)
 
-"""
 
 
 @dp.callback_query_handler(
@@ -134,7 +131,8 @@ async def sub(call: CallbackQuery):
     for i in text_link_headers:
         text+=i+"("+text_link_headers[i]+")"+"\n"+"\n"
 
-    await send_msg(text, message)
+    await call.message.answer(text,
+                              reply_markup=get_back_to_mailing)
 
 @dp.callback_query_handler(text_contains="subagain")
 async def sub(call: CallbackQuery):

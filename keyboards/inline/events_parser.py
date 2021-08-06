@@ -8,7 +8,7 @@ data = BeautifulSoup(r.text, features='html.parser')
 content = data.find_all("h2", {"class": "article_title"})
 events = {}
 for i in content:
-    events [i.getText()] = "https://www.mzv.cz" + i.a["href"]
+    events[i.getText()] = "https://www.mzv.cz" + i.a["href"]
 
 
 
