@@ -56,7 +56,7 @@ async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
     callback_data = call.data
     logging.info(f"{callback_data=}")
-    await call.message.answer(d,reply_markup=backtostart1)
+    await call.message.answer(d,reply_markup=get_back_from_education)
 
 
 
