@@ -106,7 +106,7 @@ async def viza_start(call: CallbackQuery):
 
     await call.message.answer("Визовая информация",
                               reply_markup=viza_info)
-    await call.message.answer(reply_markup=ReplyKeyboardRemove())
+
 
 
 
