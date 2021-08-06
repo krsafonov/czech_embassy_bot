@@ -60,19 +60,6 @@ async def sub(call: CallbackQuery):
     logging.info(f"{callback_data=}")
     await call.message.answer(d,reply_markup=backtostart1)
 
-"""@dp.callback_query_handler(
-    text_contains="education_cz")  # made callback for button which gets you back from education to long term viza
-async def sub(call: CallbackQuery):
-    await call.answer(cache_time=60)
-    callback_data = call.data
-    logging.info(f"{callback_data=}")
-    if len(ed_content) > 4096:
-        for i in range(0, len(ed_content), 4096):
-            await call.message.answer(ed_content[i:i+4096],
-                                      reply_markup=backtostart1)
-    else:
-        await call.message.answer(text=ed_content,
-                                  reply_markup=backtostart1)"""
 
 
 @dp.message_handler(Command("start"))  # made introduction and logic of collecting user's data
@@ -82,7 +69,7 @@ async def show_items(message: Message):
         text="Доброго времени суток, юзеры.\nДанный бот призван облегчить ваш процесс работы с посольством Чешской Республики в Москве \n"
              "Для начала работы выберете топик снизу", reply_markup=start)
 
-@dp.message_handler(text_contains="1")
+"""@dp.message_handler(text_contains="1")
 async def huge(message: Message):
     await send_msg(get_covid_article(1), message)
 
@@ -109,7 +96,7 @@ async def viza_start(call: CallbackQuery):
     await call.message.answer(basic_content,
                               reply_markup=backtostart1)
 
-
+"""
 
 
 @dp.callback_query_handler(
@@ -330,11 +317,9 @@ async def sub(call: CallbackQuery):
     logging.info(f"{callback_data=}")
     text = ""
     for n, i in enumerate(list5):
-        text += str(n+1)+". "+ i + "\n\n"
+        text += str(n+1)+". "+ i + "\n("+list5[i]+")"+"\n\n"
     await call.message.answer(text,
                               reply_markup=back_to_start)
-    await call.message.answer("Выберете статью",
-                              reply_markup=menu)
 
 
 
