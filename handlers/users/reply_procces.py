@@ -40,7 +40,7 @@ latest_msg = None
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
 
-    msg = await call.message.answer(educational_content.open(), reply_markup=get_back_from_education)
+    msg = await call.message.answer(educational_content, reply_markup=get_back_from_education)
     global latest_msg
     try:
         await latest_msg.delete()
