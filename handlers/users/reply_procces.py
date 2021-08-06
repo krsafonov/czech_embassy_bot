@@ -39,7 +39,7 @@ from keyboards.inline.trade_parser import trade_articels
 from keyboards.inline.shengen_articles_parser import shengen_articels
 
 dp.message_handler()
-
+latest_msg = None
 
 async def send_msg(text,message):
     if len(text)>4096:
@@ -105,7 +105,7 @@ async def viza_start(call: CallbackQuery):
     await call.answer(cache_time=60)
     callback_data = call.data
     logging.info(f"{callback_data=}")
-    await message.delete.keyboard_markup()
+    await latest_msg.delete_reply_markup()
     await call.message.answer("Визовая информация",
                               reply_markup=viza_info)
 
