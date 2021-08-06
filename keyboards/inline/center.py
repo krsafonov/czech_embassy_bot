@@ -11,4 +11,4 @@ content = str(data.find("div", {"class": "article_body"}))
 title = data.find("h1", {"class": "article_title"})
 
 
-center = create_page(title.text, "\n".join(content.split("\n")[1:-1]))
+center_c = create_page(title.text, "\n".join(content.split("\n")[1:-1]))
