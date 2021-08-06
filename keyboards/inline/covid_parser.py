@@ -9,7 +9,7 @@ content = str(data.find("div", {"class": "article_body"}))
 title = data.find("h1", {"class": "article_title"})
 list5 = {}
 d = create_page(title.text, "\n".join(content.split("\n")[1:-1]))
-list5[title.text] = d
+c = list5[title.text] = d
 
 """def get_covid_article(num):
     url = list(list5.values())[num-1]

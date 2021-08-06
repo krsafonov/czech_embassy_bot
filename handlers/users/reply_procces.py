@@ -24,7 +24,7 @@ from keyboards.inline.sport_paser import sport
 
 from loader import dp
 
-from keyboards.inline.covid_parser import list5, get_covid_article
+from keyboards.inline.covid_parser import list5, get_covid_article, c
 from keyboards.inline.cul_parser import cul
 from keyboards.inline.events_parser import events
 from keyboards.inline.polit_parser import polit
@@ -336,10 +336,8 @@ async def sub(call: CallbackQuery):
 @dp.callback_query_handler(text_contains="covid")
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
-    text = ""
-    for n, i in enumerate(list5):
-        text += str(n + 1) + ". " + i + "\n(" + list5[i] + ")" + "\n\n"
-    msg = await call.message.answer(text,
+
+    msg = await call.message.answer(c,
                               reply_markup=back_to_start)
     global latest_msg
     try:
