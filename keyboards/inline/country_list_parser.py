@@ -6,7 +6,10 @@ r.encoding = 'utf-8-sig'
 from bs4 import BeautifulSoup
 data = BeautifulSoup(r.text, features='html.parser')
 content = data.find_all("div", {"class": "article_body"})
-clist = []
+clist = ""
 for i in content:
-    clist.append(i)
+   try:
+       clist+=i.text
+   except:
+       pass
 
