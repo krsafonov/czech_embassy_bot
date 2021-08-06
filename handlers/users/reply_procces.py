@@ -62,8 +62,7 @@ async def show_items(message: Message):
 async def viza_start(call: CallbackQuery):
     await call.answer(cache_time=60)
     basic_content2 = "https://telegra.ph/Konsulskij-otdel-08-06"
-    text = basic_content2
-    msg = await call.message.answer(text, reply_markup=backtostart1)
+    msg = await call.message.answer(basic_content2, reply_markup=backtostart1)
     global latest_msg
     try:
         await latest_msg.delete()
