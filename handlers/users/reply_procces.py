@@ -222,8 +222,13 @@ async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
     callback_data = call.data
     logging.info(f"{callback_data=}")
-
-    await call.message.answer(family,
+    text = family
+    if len(text) > 4096:
+        for i in range(0, len(text), 4096):
+            await call.message.answer(text=text[i:i + 4096], reply_markup=backtovizainfo1)
+    else:
+        await call.message.answer(text=text, reply_markup=backtovizainfo1)
+    await call.message.answer(text,
                               reply_markup=back_to_long_term)
 
 
@@ -364,13 +369,13 @@ async def sub(call: CallbackQuery):
 
     await call.message.answer(cul,
                               reply_markup=back_to_another)
-fr = "https://telegra.ph/CHehi-vo-vtoroj-mirovoj-vojne-08-05"
+
 @dp.callback_query_handler(text_contains="war")#made callback for button which gives war's content
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
     callback_data = call.data
     logging.info(f"{callback_data=}")
-
+    fr = "https://telegra.ph/CHehi-vo-vtoroj-mirovoj-vojne-08-05"
     await call.message.answer(fr,
                               reply_markup=back_to_another)
 
