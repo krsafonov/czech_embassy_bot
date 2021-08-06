@@ -17,6 +17,7 @@ from keyboards.inline.constant_living_parser import constant
 from keyboards.inline.country_list_parser import clist
 from keyboards.inline.differ_parser import differ
 from keyboards.inline.educational_parser import educational_content
+from keyboards.inline.family_parser import family
 from keyboards.inline.fee import fee_list
 from keyboards.inline.long_living_parser import long
 from keyboards.inline.sport_paser import sport
@@ -237,7 +238,7 @@ async def sub(call: CallbackQuery):
 @dp.callback_query_handler(text_contains="family1")
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
-    family = "https://telegra.ph/S-celyu-soedineniya-semi-08-06"
+
     msg = await call.message.answer(family, reply_markup=backtovizainfo1)
     global latest_msg
     try:
