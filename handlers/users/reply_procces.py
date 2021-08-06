@@ -1,9 +1,8 @@
 import logging
 
-
-
 from aiogram.dispatcher.filters import Command
-from aiogram.types import Message, CallbackQuery, ReplyKeyboardRemove
+from aiogram.types import Message, CallbackQuery
+
 
 from handlers.users.bis_parser import bis
 from handlers.users.long_list_parser import long_list
@@ -25,14 +24,12 @@ from keyboards.inline.sport_paser import sport
 from keyboards.inline.viza_info_parse import content_viza
 
 
-
 from loader import dp
 
 from keyboards.inline.covid_parser import list5, get_covid_article
 from keyboards.inline.cul_parser import cul
 from keyboards.inline.events_parser import events
 from keyboards.inline.polit_parser import polit
-#from keyboards.inline.shengen_articles_parser import shengen_articels
 from keyboards.inline.trade_parser import trade_articels
 from keyboards.inline.shengen_articles_parser import shengen_articels
 
@@ -40,6 +37,10 @@ dp.message_handler()
 
 
 async def send_msg(text,message):
+    async def sub(call: CallbackQuery):
+        await call.answer(cache_time=60)
+        callback_data = call.data
+        logging.info(f"{callback_data=}")
     if len(text)>4096:
         for i in range(0, len(text), 4096):
             await message.answer(text=text[i:i+4096])
@@ -48,16 +49,14 @@ async def send_msg(text,message):
 
 
 
-d = "https://telegra.ph/Obuchenie-08-05-3"
-
 @dp.callback_query_handler(
     text_contains="education_cz")  # made callback for button which gets you back from education to long term viza
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
     callback_data = call.data
     logging.info(f"{callback_data=}")
-    await call.message.answer(d,reply_markup=get_back_from_education)
-
+    d = "https://telegra.ph/Obuchenie-08-05-3"
+    await call.message.answer(d, reply_markup=get_back_from_education)
 
 
 @dp.message_handler(Command("start"))  # made introduction and logic of collecting user's data
@@ -67,22 +66,7 @@ async def show_items(message: Message):
         text="Доброго времени суток, юзеры.\nДанный бот призван облегчить ваш процесс работы с посольством Чешской Республики в Москве \n"
              "Для начала работы выберете топик снизу", reply_markup=start)
 
-"""@dp.message_handler(text_contains="1")
-async def huge(message: Message):
-    await send_msg(get_covid_article(1), message)
 
-
-@dp.message_handler(text_contains="2")
-async def huge(message: Message):
-    await send_msg(get_covid_article(2), message)
-
-@dp.message_handler(text_contains="3")
-async def huge(message: Message):
-    await send_msg(get_covid_article(3), message)
-
-@dp.message_handler(text_contains="4")
-async def huge(message: Message):
-    await send_msg(get_covid_article(4), message)"""
 
 @dp.callback_query_handler(text_contains="basic info")
 async def viza_start(call: CallbackQuery):
@@ -90,7 +74,14 @@ async def viza_start(call: CallbackQuery):
     callback_data = call.data
     logging.info(f"{callback_data=}")
     basic_content = "https://telegra.ph/Konsulskij-otdel-08-06"
-    await call.message.answer(basic_content,
+    text = basic_content
+    if len(text) > 4096:
+        for i in range(0, len(text), 4096):
+            await message.answer(text=text[i:i + 4096])
+    else:
+        await message.answer(text=text)
+
+    await call.message.answer(text,
                               reply_markup=backtostart1)
 
 
