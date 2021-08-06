@@ -1,5 +1,5 @@
 import requests
-from telegraph_page_maker import create_page
+
 
 r = requests.get("https://www.mzv.cz/moscow/ru/vizy_i_konsulskaja/covid_19/index.html")
 r.encoding = 'utf-8-sig'
