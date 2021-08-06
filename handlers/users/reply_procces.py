@@ -75,11 +75,8 @@ async def viza_start(call: CallbackQuery):
     logging.info(f"{callback_data=}")
     basic_content = "https://telegra.ph/Konsulskij-otdel-08-06"
     text = basic_content
-    if len(text) > 4096:
-        for i in range(0, len(text), 4096):
-            await message.answer(text=text[i:i + 4096], reply_markup=backtostart1)
-    else:
-        await call.message.answer(text=text, reply_markup=backtostart1)
+    await message.answer(text, reply_markup=backtostart1)
+
 
 
 
@@ -451,8 +448,8 @@ async def sub(call: CallbackQuery):
     callback_data = call.data
     logging.info(f"{callback_data=}")
     text = ""
-    for n, i in enumerate (constant):
-        text+= str(n+1) +". "+ i+"\n (+constant[i]+)\n\n"
+    for i in constant:
+        text+=i +"("+constant[i]+")"+"\n\n"
     await call.message.answer(text,
                               reply_markup=chengen_back)
 
