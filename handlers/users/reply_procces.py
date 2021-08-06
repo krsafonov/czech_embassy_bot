@@ -24,7 +24,7 @@ from keyboards.inline.long_living_parser import long
 from keyboards.inline.sport_paser import sport
 from keyboards.inline.viza_info_parse import content_viza
 
-from keyboards.inline.basic_parser import basic_content
+
 
 from loader import dp
 
@@ -89,6 +89,7 @@ async def viza_start(call: CallbackQuery):
     await call.answer(cache_time=60)
     callback_data = call.data
     logging.info(f"{callback_data=}")
+    basic_content = "https://telegra.ph/Konsulskij-otdel-08-06"
     await call.message.answer(basic_content,
                               reply_markup=backtostart1)
 
