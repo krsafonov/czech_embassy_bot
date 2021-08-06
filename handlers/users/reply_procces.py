@@ -8,7 +8,6 @@ from handlers.users.bis_parser import bis
 from handlers.users.long_list_parser import long_list
 from handlers.users.news_parser import text_link_headers
 from keyboards.inline.about_parser import about_content
-from keyboards.inline.basic_parser import basic_content
 from keyboards.inline.blanks import message
 
 from keyboards.inline.buttons import start, long_term, chengen_back, viza_info, get_notified, \
@@ -18,11 +17,10 @@ from keyboards.inline.center import center_c
 from keyboards.inline.constant_living_parser import constant
 from keyboards.inline.country_list_parser import clist
 from keyboards.inline.differ_parser import differ
-from keyboards.inline.family_parser import family
 from keyboards.inline.fee import fee_list
 from keyboards.inline.long_living_parser import long
 from keyboards.inline.sport_paser import sport
-from keyboards.inline.viza_info_parse import content_viza
+
 
 
 from loader import dp
@@ -222,14 +220,9 @@ async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
     callback_data = call.data
     logging.info(f"{callback_data=}")
-    text = family
-    if len(text) > 4096:
-        for i in range(0, len(text), 4096):
-            await call.message.answer(text=text[i:i + 4096], reply_markup=backtovizainfo1)
-    else:
-        await call.message.answer(text=text, reply_markup=backtovizainfo1)
-    await call.message.answer(text,
-                              reply_markup=back_to_long_term)
+    family = "https://telegra.ph/S-celyu-soedineniya-semi-08-06"
+    await call.message.answer(family, reply_markup=backtovizainfo1)
+
 
 
 @dp.callback_query_handler(text_contains="how differ1")
