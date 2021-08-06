@@ -134,8 +134,7 @@ async def sub(call: CallbackQuery):
     for i in text_link_headers:
         text+=i+"("+text_link_headers[i]+")"+"\n"+"\n"
 
-    await call.message.answer(text,
-                              reply_markup=get_back_to_mailing)
+    await send_msg(text, message)
 
 @dp.callback_query_handler(text_contains="subagain")
 async def sub(call: CallbackQuery):
