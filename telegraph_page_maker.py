@@ -11,7 +11,7 @@ def create_page(header, content):
         header,
         html_content=content,
         author_name='Jarvis',
-        author_url=""
+        author_url="https://t.me/bruhGT_bot"
 
     )
 
