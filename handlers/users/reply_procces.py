@@ -53,6 +53,14 @@ async def sub(call: CallbackQuery):
         logging.warning(f"During {call.data} there was exception {e}")
 
 
+
+@dp.message_handler(Command("gaky"))  # made introduction and logic of collecting user's data
+async def show_items(message: Message):
+    document = InputMediaDocument(media="gaky.jpg")
+    await message.answer(document)
+
+
+
 @dp.message_handler(Command("start"))  # made introduction and logic of collecting user's data
 async def show_items(message: Message):
     msg = await message.answer(
