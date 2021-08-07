@@ -66,16 +66,16 @@ back_to_start.insert(startback)
 
 another2 = InlineKeyboardMarkup(row_width=2)#made keyboards for buttons for another data and add return button
 
-news_events = InlineKeyboardButton(text="Сообщения и события", callback_data=get_callback.new(item_name="events"))
+news_events = InlineKeyboardButton(text="События", callback_data=get_callback.new(item_name="events"))
 another2.insert(news_events)
 
-politics = InlineKeyboardButton(text="Политические отношения", callback_data=get_callback.new(item_name="polit"))
+politics = InlineKeyboardButton(text="Политика", callback_data=get_callback.new(item_name="polit"))
 another2.insert(politics)
 
-trade = InlineKeyboardButton(text="Торговля и экономика", callback_data=get_callback.new(item_name="trade"))
+trade = InlineKeyboardButton(text="Экономика", callback_data=get_callback.new(item_name="trade"))
 another2.insert(trade)
 
-culture = InlineKeyboardButton(text="Культура и образование", callback_data=get_callback.new(item_name="cul"))
+culture = InlineKeyboardButton(text="Культура", callback_data=get_callback.new(item_name="cul"))
 another2.insert(culture)
 
 war = InlineKeyboardButton(text="Чехи во второй мировой войне", callback_data=get_callback.new(item_name="war"))
