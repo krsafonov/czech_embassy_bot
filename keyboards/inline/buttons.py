@@ -113,7 +113,7 @@ permission_long = InlineKeyboardButton(text="Долгосрочное прожи
 viza_info.insert(permission_long)
 
 
-basic = InlineKeyboardButton(text="основная информация", callback_data=get_callback.new(item_name="basic"))
+basic = InlineKeyboardButton(text="Основная информация", callback_data=get_callback.new(item_name="basic"))
 viza_info.insert(basic)
 
 

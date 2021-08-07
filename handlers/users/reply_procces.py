@@ -110,7 +110,7 @@ async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
 
     msg = await call.message.answer(ter_parse,
-                              reply_markup=back_to_long_term)
+                              reply_markup=viza_info)
     global latest_msg
     try:
         await latest_msg.delete()
@@ -543,7 +543,7 @@ async def sub(call: CallbackQuery):
     for i in constant:
         text += i + "(" + constant[i] + ")" + "\n\n"
     msg = await call.message.answer(text,
-                              reply_markup=chengen_back)
+                              reply_markup=backtovizainfo1)
     global latest_msg
     try:
         await latest_msg.delete()
@@ -559,7 +559,7 @@ async def sub(call: CallbackQuery):
     for i in long:
         text += i + "(" + long[i] + ")" + "\n" + "\n"
     msg = await call.message.answer(text,
-                              reply_markup=chengen_back)
+                              reply_markup=backtovizainfo1)
     global latest_msg
     try:
         await latest_msg.delete()
@@ -601,7 +601,7 @@ async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
 
     msg = await call.message.answer(center_c,
-                              reply_markup=chengen_back)
+                              reply_markup=backtovizainfo1)
     global latest_msg
     try:
         await latest_msg.delete()
