@@ -1,6 +1,6 @@
 import logging
 import types
-
+from aiogram.types import InputMediaDocument
 
 from aiogram.dispatcher.filters import Command
 from aiogram.types import Message, CallbackQuery
@@ -58,8 +58,7 @@ async def show_items(message: Message):
     msg = await message.answer(
         text="Доброго времени суток, юзеры.\nДанный бот призван облегчить ваш процесс работы с посольством Чешской Республики в Москве \n"
              "Для начала работы выберете топик снизу", reply_markup=start)
-    media = types.MediaGroup()
-    media.attach_photo(types.InputFile('gaky.jpg'))
+    InputMediaDocument('gaky.jpg')
     global latest_msg
     latest_msg = msg
 

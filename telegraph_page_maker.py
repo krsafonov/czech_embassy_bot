@@ -1,4 +1,4 @@
-from aiogram.types import InputMediaDocument
+
 from telegraph import Telegraph
 
 telegraph = Telegraph()
@@ -6,8 +6,6 @@ telegraph = Telegraph()
 telegraph.create_account(short_name='Artemii')
 
 
-
-ATTACHMENT_PREFIX = 'attach://'
 
 
 def create_page(header, content):
