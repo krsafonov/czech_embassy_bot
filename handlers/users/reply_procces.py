@@ -21,6 +21,7 @@ from keyboards.inline.educational_parser import educational_content
 from keyboards.inline.fee import fee_list
 from keyboards.inline.long_living_parser import long
 from keyboards.inline.sport_paser import sport
+from keyboards.inline.ter_p import ter_parse
 
 from loader import dp
 
@@ -60,7 +61,7 @@ async def show_items(message: Message):
     latest_msg = msg
 
 
-@dp.callback_query_handler(text_contains="basic info")
+"""@dp.callback_query_handler(text_contains="basic info")
 async def viza_start(call: CallbackQuery):
     await call.answer(cache_time=60)
 
@@ -71,7 +72,7 @@ async def viza_start(call: CallbackQuery):
         latest_msg = msg
     except Exception as e:
         logging.warning(f"During {call.data} there was exception {e}")
-
+"""
 
 @dp.callback_query_handler(
     text_contains="main viza info")  # made callback for button which gives options of different types of vizas
@@ -101,6 +102,22 @@ async def sub(call: CallbackQuery):
         latest_msg = msg
     except Exception as e:
         logging.warning(f"During {call.data} there was exception {e}")
+
+
+@dp.callback_query_handler(
+    text_contains="ter")  # made callback for long term viza button which gives as set of buttons with types of long term viza
+async def sub(call: CallbackQuery):
+    await call.answer(cache_time=60)
+
+    msg = await call.message.answer(ter_parse,
+                              reply_markup=back_to_long_term)
+    global latest_msg
+    try:
+        await latest_msg.delete()
+        latest_msg = msg
+    except Exception as e:
+        logging.warning(f"During {call.data} there was exception {e}")
+
 
 
 @dp.callback_query_handler(text_contains="news_list")  # made call back for buttton which gives you list of news

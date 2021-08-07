@@ -96,33 +96,46 @@ back_to_another.insert(aback)
 
 viza_info = InlineKeyboardMarkup(row_width=2)#made keyboard from bu
 
-long_term = InlineKeyboardButton(text="долгосрочная виза", callback_data=get_callback.new(item_name="long term viza"))
+
+long_term = InlineKeyboardButton(text="Долгосрочная виза", callback_data=get_callback.new(item_name="long term viza"))
 viza_info.insert(long_term)
 
-shengen = InlineKeyboardButton(text="шенгенская виза", callback_data=get_callback.new(item_name="shengen"))
+
+shengen = InlineKeyboardButton(text="Шенгенская виза", callback_data=get_callback.new(item_name="shengen"))
 viza_info.insert(shengen)
 
-blanks = InlineKeyboardButton(text="бланки", callback_data=get_callback.new(item_name="blanks"))
-viza_info.insert(blanks)
 
 permission = InlineKeyboardButton(text="Постоянное проживание", callback_data=get_callback.new(item_name="constant"))
 viza_info.insert(permission)
 
+
 permission_long = InlineKeyboardButton(text="Долгосрочное проживание", callback_data=get_callback.new(item_name="long_live"))
 viza_info.insert(permission_long)
+
+
+basic = InlineKeyboardButton(text="основная информация", callback_data=get_callback.new(item_name="basic"))
+viza_info.insert(basic)
+
+
+fee = InlineKeyboardButton(text="Консульские сборы", callback_data=get_callback.new(item_name="fee"))
+viza_info.insert(fee)
+
+
+blanks = InlineKeyboardButton(text="Бланки", callback_data=get_callback.new(item_name="blanks"))
+viza_info.insert(blanks)
+
 
 cl = InlineKeyboardButton(text="Список государств, граждане которых не нуждаются в визе для въезда в ЧР", callback_data=get_callback.new(item_name="country_list"))
 viza_info.insert(cl)
 
-fee = InlineKeyboardButton(text="Консульские сборы", callback_data=get_callback.new(item_name="fee"))
-viza_info.insert(fee)
 
 branch = InlineKeyboardButton(text="Региональные визовые центры", callback_data=get_callback.new(item_name="viza_center"))
 viza_info.insert(branch)
 
 
-basic = InlineKeyboardButton(text="основная информация", callback_data=get_callback.new(item_name="basic"))
-viza_info.insert(basic)
+ter = InlineKeyboardButton(text="Территориальная сфера деятельности", callback_data=get_callback.new(item_name="ter"))
+viza_info.insert(ter)
+
 
 backtostart = InlineKeyboardButton(text="Вернуться в начало", callback_data=get_callback.new(item_name="back_to_start"))
 viza_info.insert(backtostart)
