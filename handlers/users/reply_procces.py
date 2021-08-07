@@ -381,9 +381,8 @@ async def sub(call: CallbackQuery):
 @dp.callback_query_handler(text_contains="events")  # made callback for button which gives event's content
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
-
-    msg = await call.message.answer(events,
-                              reply_markup=back_to_another)
+    for i in range(0, len(events), 4096):
+        msg = await call.message.answer(text=events[i:i + 4096], reply_markup=back_to_another)
     global latest_msg
     try:
         await latest_msg.delete()
