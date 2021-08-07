@@ -22,7 +22,7 @@ viza_info = ReplyKeyboardMarkup(resize_keyboard=True).add(back)
 
 start = InlineKeyboardMarkup(row_width=2)#made the first keyboard for buttons with the begging buttons
 
-start_viza = InlineKeyboardButton(text="Консульский отдел", callback_data=get_callback.new(item_name="basic info"))
+start_viza = InlineKeyboardButton(text="Консульский отдел", callback_data=get_callback.new(item_name="cons info"))
 start.insert(start_viza)
 
 subscribe = InlineKeyboardButton(text="Подписка на рассылку новостей", callback_data=get_callback.new(item_name="to subscribe"))
@@ -125,15 +125,15 @@ blanks = InlineKeyboardButton(text="Бланки", callback_data=get_callback.ne
 viza_info.insert(blanks)
 
 
-cl = InlineKeyboardButton(text="Список государств, граждане которых не нуждаются в визе для въезда в ЧР", callback_data=get_callback.new(item_name="country_list"))
+cl = InlineKeyboardButton(text="Виза не требуется ", callback_data=get_callback.new(item_name="country_list"))
 viza_info.insert(cl)
 
 
-branch = InlineKeyboardButton(text="Региональные визовые центры", callback_data=get_callback.new(item_name="viza_center"))
+branch = InlineKeyboardButton(text="Визовые центры", callback_data=get_callback.new(item_name="viza_center"))
 viza_info.insert(branch)
 
 
-ter = InlineKeyboardButton(text="Территориальная сфера деятельности", callback_data=get_callback.new(item_name="ter"))
+ter = InlineKeyboardButton(text="Сфера деятельности", callback_data=get_callback.new(item_name="ter"))
 viza_info.insert(ter)
 
 

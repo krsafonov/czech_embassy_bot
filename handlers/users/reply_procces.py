@@ -61,10 +61,10 @@ async def show_items(message: Message):
     latest_msg = msg
 
 
-@dp.callback_query_handler(text_contains="basic info")
+@dp.callback_query_handler(text_contains="cons info")
 async def viza_start(call: CallbackQuery):
     await call.answer(cache_time=60)
-    url = "https://telegra.ph/Osnovnaya-vizovaya-informaciya-08-06"
+    url = "https://telegra.ph/Konsulskij-otdel-Posolstva-CHeshskoj-Respubliki-v-Moskve-08-07"
     msg = await call.message.answer(url, reply_markup=back_to_start)
     global latest_msg
     try:
