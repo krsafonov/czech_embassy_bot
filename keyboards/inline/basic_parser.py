@@ -1,4 +1,4 @@
-"""import requests
+import requests
 
 from telegraph_page_maker import create_page
 
@@ -12,4 +12,4 @@ title = data.find("h1", {"class": "article_title"})
 
 
 basic_content = create_page(title.text, "\n".join(content.split("\n")[6:-1]))
-print(content)"""
+print(basic_content)
