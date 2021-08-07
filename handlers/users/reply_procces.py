@@ -456,7 +456,7 @@ async def sub(call: CallbackQuery):
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
 
-    msg = await call.message.answer(about_content.open(),
+    msg = await call.message.answer(about_content,
                               reply_markup=back_to_another)
     global latest_msg
     try:
@@ -587,7 +587,7 @@ async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
 
     msg = await call.message.answer(fee_list,
-                              reply_markup=chengen_back)
+                              reply_markup=backtovizainfo1)
     global latest_msg
     try:
         await latest_msg.delete()
@@ -674,7 +674,7 @@ async def sub(call: CallbackQuery):
     for i in shengen_articels:
         text += i + "(" + shengen_articels[i] + ")" + "\n" + "\n"
     msg = await call.message.answer(text,
-                              reply_markup=chengen_back)
+                              reply_markup=backtovizainfo1)
     global latest_msg
     try:
         await latest_msg.delete()
