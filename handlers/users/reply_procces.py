@@ -1,4 +1,6 @@
 import logging
+import types
+
 
 from aiogram.dispatcher.filters import Command
 from aiogram.types import Message, CallbackQuery
@@ -57,6 +59,8 @@ async def show_items(message: Message):
     msg = await message.answer(
         text="Доброго времени суток, юзеры.\nДанный бот призван облегчить ваш процесс работы с посольством Чешской Республики в Москве \n"
              "Для начала работы выберете топик снизу", reply_markup=start)
+    media = types.MediaGroup()
+    media.attach_photo(types.InputFile('gaky.jpg'))
     global latest_msg
     latest_msg = msg
 
@@ -202,6 +206,7 @@ async def sub(call: CallbackQuery):
 
     msg = await call.message.answer(message,
                               reply_markup=backtovizainfo1)
+
     global latest_msg
     try:
         await latest_msg.delete()
@@ -381,8 +386,9 @@ async def sub(call: CallbackQuery):
 @dp.callback_query_handler(text_contains="events")  # made callback for button which gives event's content
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
-    for i in range(0, len(events), 4096):
-        msg = await call.message.answer(text=events[i:i + 4096], reply_markup=back_to_another)
+
+    msg = await call.message.answer(events,
+                              reply_markup=back_to_another)
     global latest_msg
     try:
         await latest_msg.delete()
