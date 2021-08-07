@@ -6,7 +6,7 @@ from aiogram.types import Message, CallbackQuery
 from handlers.users.bis_parser import bis
 from handlers.users.long_list_parser import long_list
 from handlers.users.news_parser import text_link_headers
-from keyboards.inline.basic_parser import basic_content
+
 
 from keyboards.inline.blanks import message
 
