@@ -78,7 +78,7 @@ another2.insert(trade)
 culture = InlineKeyboardButton(text="Культура", callback_data=get_callback.new(item_name="cul"))
 another2.insert(culture)
 
-war = InlineKeyboardButton(text="Чехи во второй мировой войне", callback_data=get_callback.new(item_name="war"))
+war = InlineKeyboardButton(text="Чехи в войне", callback_data=get_callback.new(item_name="war"))
 another2.insert(war)
 
 about = InlineKeyboardButton(text="О посольстве ", callback_data=get_callback.new(item_name="about"))
