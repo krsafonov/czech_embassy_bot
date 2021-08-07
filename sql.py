@@ -5,9 +5,10 @@ from config import SQL_HOST, SQL_USER, SQL_PASSWORD, SQL_DATABASE
 
 def insert_user(uname, uid, extra=""):
     this_user_already_exists = False
-    for user in get_all_users():
-        if str(uid) in user:
-            this_user_already_exists = True
+    if not get_all_users() is None:
+        for user in get_all_users():
+            if str(uid) in user:
+                this_user_already_exists = True
     if not this_user_already_exists:
         insert_ratings_query = """
         INSERT INTO tg_users
