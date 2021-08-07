@@ -1,6 +1,4 @@
 import logging
-import types
-from aiogram.types import InputMediaDocument
 
 from aiogram.dispatcher.filters import Command
 from aiogram.types import Message, CallbackQuery
@@ -54,35 +52,27 @@ async def sub(call: CallbackQuery):
 
 
 
-@dp.message_handler(Command("gaky"))  # made introduction and logic of collecting user's data
-async def show_items(message: Message):
-    document = InputMediaDocument(media="gaky.jpg")
-    await message.answer(document)
-
-
-
 @dp.message_handler(Command("start"))  # made introduction and logic of collecting user's data
 async def show_items(message: Message):
     msg = await message.answer(
         text="Доброго времени суток, юзеры.\nДанный бот призван облегчить ваш процесс работы с посольством Чешской Республики в Москве \n"
              "Для начала работы выберете топик снизу", reply_markup=start)
-    InputMediaDocument('gaky.jpg')
     global latest_msg
     latest_msg = msg
 
 
-@dp.callback_query_handler(text_contains="cons info")
+"""@dp.callback_query_handler(text_contains="basic info")
 async def viza_start(call: CallbackQuery):
     await call.answer(cache_time=60)
-    url = "https://telegra.ph/Konsulskij-otdel-Posolstva-CHeshskoj-Respubliki-v-Moskve-08-07"
-    msg = await call.message.answer(url, reply_markup=back_to_start)
+
+    msg = await call.message.answer(basic_content, reply_markup=backtostart1)
     global latest_msg
     try:
         await latest_msg.delete()
         latest_msg = msg
     except Exception as e:
         logging.warning(f"During {call.data} there was exception {e}")
-
+"""
 
 @dp.callback_query_handler(
     text_contains="main viza info")  # made callback for button which gives options of different types of vizas
@@ -120,7 +110,7 @@ async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
 
     msg = await call.message.answer(ter_parse,
-                              reply_markup=backtovizainfo1)
+                              reply_markup=back_to_long_term)
     global latest_msg
     try:
         await latest_msg.delete()
@@ -212,7 +202,6 @@ async def sub(call: CallbackQuery):
 
     msg = await call.message.answer(message,
                               reply_markup=backtovizainfo1)
-
     global latest_msg
     try:
         await latest_msg.delete()
@@ -467,7 +456,7 @@ async def sub(call: CallbackQuery):
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
 
-    msg = await call.message.answer(about_content,
+    msg = await call.message.answer(about_content.open(),
                               reply_markup=back_to_another)
     global latest_msg
     try:
@@ -554,7 +543,7 @@ async def sub(call: CallbackQuery):
     for i in constant:
         text += i + "(" + constant[i] + ")" + "\n\n"
     msg = await call.message.answer(text,
-                              reply_markup=backtovizainfo1)
+                              reply_markup=chengen_back)
     global latest_msg
     try:
         await latest_msg.delete()
@@ -570,7 +559,7 @@ async def sub(call: CallbackQuery):
     for i in long:
         text += i + "(" + long[i] + ")" + "\n" + "\n"
     msg = await call.message.answer(text,
-                              reply_markup=backtovizainfo1)
+                              reply_markup=chengen_back)
     global latest_msg
     try:
         await latest_msg.delete()
@@ -584,7 +573,7 @@ async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
 
     msg = await call.message.answer(clist,
-                              reply_markup=backtovizainfo1)
+                              reply_markup=chengen_back)
     global latest_msg
     try:
         await latest_msg.delete()
@@ -598,7 +587,7 @@ async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
 
     msg = await call.message.answer(fee_list,
-                              reply_markup=backtovizainfo1)
+                              reply_markup=chengen_back)
     global latest_msg
     try:
         await latest_msg.delete()
@@ -612,7 +601,7 @@ async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
 
     msg = await call.message.answer(center_c,
-                              reply_markup=backtovizainfo1)
+                              reply_markup=chengen_back)
     global latest_msg
     try:
         await latest_msg.delete()
@@ -685,7 +674,7 @@ async def sub(call: CallbackQuery):
     for i in shengen_articels:
         text += i + "(" + shengen_articels[i] + ")" + "\n" + "\n"
     msg = await call.message.answer(text,
-                              reply_markup=backtovizainfo1)
+                              reply_markup=chengen_back)
     global latest_msg
     try:
         await latest_msg.delete()
