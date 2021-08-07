@@ -6,23 +6,26 @@ from aiogram.types import Message, CallbackQuery
 from handlers.users.bis_parser import bis
 from handlers.users.long_list_parser import long_list
 from handlers.users.news_parser import text_link_headers
-from keyboards.inline.about_parser import about_content
+
+
 from keyboards.inline.blanks import message
 
 from keyboards.inline.buttons import start, long_term, chengen_back, viza_info, get_notified, \
     get_back_to_mailing, back_to_another, \
-    backtovizainfo1, back_to_long_term, menu, back_to_start, another2, get_back_from_education, backtostart1
+    backtovizainfo1, back_to_long_term, back_to_start, another2, backtostart1
 from keyboards.inline.center import center_c
 from keyboards.inline.constant_living_parser import constant
 from keyboards.inline.country_list_parser import clist
 from keyboards.inline.differ_parser import differ
+from keyboards.inline.educational_parser import educational_content
 from keyboards.inline.fee import fee_list
 from keyboards.inline.long_living_parser import long
 from keyboards.inline.sport_paser import sport
+from keyboards.inline.ter_p import ter_parse
 
 from loader import dp
 
-from keyboards.inline.covid_parser import list5, get_covid_article
+from keyboards.inline.covid_parser import list5
 from keyboards.inline.cul_parser import cul
 from keyboards.inline.events_parser import events
 from keyboards.inline.polit_parser import polit
@@ -40,8 +43,8 @@ latest_msg = None
     text_contains="education_cz")  # made callback for button which gets you back from education to long term viza
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
-    d = "https://telegra.ph/Obuchenie-08-05-3"
-    msg = await call.message.answer(d, reply_markup=get_back_from_education)
+
+    msg = await call.message.answer(educational_content, reply_markup=back_to_long_term)
     global latest_msg
     try:
         await latest_msg.delete()
@@ -62,19 +65,18 @@ async def show_items(message: Message):
     else:
         logging.warning(f"User {message.from_user.username} with id {message.from_user.id} already exists in the database or another error occurred!")
 
-@dp.callback_query_handler(text_contains="basic info")
+"""@dp.callback_query_handler(text_contains="basic info")
 async def viza_start(call: CallbackQuery):
     await call.answer(cache_time=60)
-    basic_content2 = "https://telegra.ph/Konsulskij-otdel-08-06"
-    text = basic_content2
-    msg = await call.message.answer(text, reply_markup=backtostart1)
+
+    msg = await call.message.answer(basic_content, reply_markup=backtostart1)
     global latest_msg
     try:
         await latest_msg.delete()
         latest_msg = msg
     except Exception as e:
         logging.error(f"During {call.data} there was exception {e}")
-
+"""
 
 @dp.callback_query_handler(
     text_contains="main viza info")  # made callback for button which gives options of different types of vizas
@@ -104,6 +106,22 @@ async def sub(call: CallbackQuery):
         latest_msg = msg
     except Exception as e:
         logging.error(f"During {call.data} there was exception {e}")
+
+
+@dp.callback_query_handler(
+    text_contains="ter")  # made callback for long term viza button which gives as set of buttons with types of long term viza
+async def sub(call: CallbackQuery):
+    await call.answer(cache_time=60)
+
+    msg = await call.message.answer(ter_parse,
+                              reply_markup=viza_info)
+    global latest_msg
+    try:
+        await latest_msg.delete()
+        latest_msg = msg
+    except Exception as e:
+        logging.warning(f"During {call.data} there was exception {e}")
+
 
 
 @dp.callback_query_handler(text_contains="news_list")  # made call back for buttton which gives you list of news
@@ -159,7 +177,7 @@ async def sub(call: CallbackQuery):
         text += i + "(" + long_list[i] + ")""\n""\n"
 
     msg = await call.message.answer(text,
-                                    reply_markup=get_back_from_education)
+                              reply_markup=back_to_long_term)
     global latest_msg
     try:
         await latest_msg.delete()
@@ -173,7 +191,7 @@ async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
 
     msg = await call.message.answer(bis,
-                                    reply_markup=get_back_from_education)
+                              reply_markup=back_to_long_term)
     global latest_msg
     try:
         await latest_msg.delete()
@@ -242,7 +260,7 @@ async def sub(call: CallbackQuery):
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
     family = "https://telegra.ph/S-celyu-soedineniya-semi-08-06"
-    msg = await call.message.answer(family, reply_markup=backtovizainfo1)
+    msg = await call.message.answer(family, reply_markup=back_to_long_term)
     global latest_msg
     try:
         await latest_msg.delete()
@@ -339,11 +357,8 @@ async def sub(call: CallbackQuery):
 @dp.callback_query_handler(text_contains="covid")
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
-    text = ""
-    for n, i in enumerate(list5):
-        text += str(n + 1) + ". " + i + "\n(" + list5[i] + ")" + "\n\n"
-    msg = await call.message.answer(text,
-                                    reply_markup=back_to_start)
+    msg = await call.message.answer(list5,
+                              reply_markup=back_to_start)
     global latest_msg
     try:
         await latest_msg.delete()
@@ -443,9 +458,8 @@ async def sub(call: CallbackQuery):
 @dp.callback_query_handler(text_contains="about")  # made callback for button which gives about's content
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
-
-    msg = await call.message.answer(about_content,
-                                    reply_markup=back_to_another)
+    msg = await call.message.answer(about_content.open(),
+                              reply_markup=back_to_another)
     global latest_msg
     try:
         await latest_msg.delete()
@@ -531,7 +545,7 @@ async def sub(call: CallbackQuery):
     for i in constant:
         text += i + "(" + constant[i] + ")" + "\n\n"
     msg = await call.message.answer(text,
-                                    reply_markup=chengen_back)
+                              reply_markup=backtovizainfo1)
     global latest_msg
     try:
         await latest_msg.delete()
@@ -547,7 +561,7 @@ async def sub(call: CallbackQuery):
     for i in long:
         text += i + "(" + long[i] + ")" + "\n" + "\n"
     msg = await call.message.answer(text,
-                                    reply_markup=chengen_back)
+                              reply_markup=backtovizainfo1)
     global latest_msg
     try:
         await latest_msg.delete()
@@ -589,7 +603,7 @@ async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
 
     msg = await call.message.answer(center_c,
-                                    reply_markup=chengen_back)
+                              reply_markup=backtovizainfo1)
     global latest_msg
     try:
         await latest_msg.delete()
