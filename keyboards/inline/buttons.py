@@ -94,7 +94,7 @@ aback = InlineKeyboardButton(text="Вернуться назад", callback_data
 back_to_another.insert(aback)
 
 
-viza_info = InlineKeyboardMarkup(row_width=3)#made keyboard from bu
+viza_info = InlineKeyboardMarkup(row_width=2)#made keyboard from bu
 
 long_term = InlineKeyboardButton(text="долгосрочная виза", callback_data=get_callback.new(item_name="long term viza"))
 viza_info.insert(long_term)
