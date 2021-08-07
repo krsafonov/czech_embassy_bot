@@ -61,18 +61,18 @@ async def show_items(message: Message):
     latest_msg = msg
 
 
-"""@dp.callback_query_handler(text_contains="basic info")
+@dp.callback_query_handler(text_contains="basic info")
 async def viza_start(call: CallbackQuery):
     await call.answer(cache_time=60)
-
-    msg = await call.message.answer(basic_content, reply_markup=backtostart1)
+    url = "https://telegra.ph/Osnovnaya-vizovaya-informaciya-08-06"
+    msg = await call.message.answer(url, reply_markup=back_to_start)
     global latest_msg
     try:
         await latest_msg.delete()
         latest_msg = msg
     except Exception as e:
         logging.warning(f"During {call.data} there was exception {e}")
-"""
+
 
 @dp.callback_query_handler(
     text_contains="main viza info")  # made callback for button which gives options of different types of vizas
@@ -110,7 +110,7 @@ async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
 
     msg = await call.message.answer(ter_parse,
-                              reply_markup=viza_info)
+                              reply_markup=backtovizainfo1)
     global latest_msg
     try:
         await latest_msg.delete()
@@ -573,7 +573,7 @@ async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
 
     msg = await call.message.answer(clist,
-                              reply_markup=chengen_back)
+                              reply_markup=backtovizainfo1)
     global latest_msg
     try:
         await latest_msg.delete()
