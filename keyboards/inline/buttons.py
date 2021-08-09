@@ -141,20 +141,25 @@ long_term = InlineKeyboardMarkup(row_width=2)#made keyboard for buttons for viza
 educ = InlineKeyboardButton(text="С целью обучения", callback_data=get_callback.new(item_name="education_cz"))
 long_term.insert(educ)
 
-family = InlineKeyboardButton(text="С целью соединения семьи", callback_data=get_callback.new(item_name="family1"))
+family = InlineKeyboardButton(text="Ссоединения семьи", callback_data=get_callback.new(item_name="family1"))
 long_term.insert(family)
 
-sport = InlineKeyboardButton(text="С целью спорта/культуры", callback_data=get_callback.new(item_name="sport1"))
+
+sport = InlineKeyboardButton(text="С целью спорта", callback_data=get_callback.new(item_name="sport1"))
 long_term.insert(sport)
 
-difference = InlineKeyboardButton(text="Разница между долгосрочной и краткосрочной", callback_data=get_callback.new(item_name="how differ1"))
+
+difference = InlineKeyboardButton(text="Долгосрочная и Краткосрочная", callback_data=get_callback.new(item_name="how differ1"))
 long_term.insert(difference)
 
-bis = InlineKeyboardButton(text="С целью предпринимательства", callback_data=get_callback.new(item_name="bis"))
+
+bis = InlineKeyboardButton(text="Предпринимательства", callback_data=get_callback.new(item_name="bis"))
 long_term.insert(bis)
 
-long_list = InlineKeyboardButton(text="Вывести список всех статей", callback_data=get_callback.new(item_name="long_list"))
+
+long_list = InlineKeyboardButton(text="Список статей", callback_data=get_callback.new(item_name="long_list"))
 long_term.insert(long_list)
+
 
 backtoviza = InlineKeyboardButton(text="Вернуться в визовую информацию", callback_data=get_callback.new(item_name="vb"))
 long_term.insert(backtoviza)
@@ -167,10 +172,6 @@ back = InlineKeyboardButton(text="Вернуться назад", callback_data=
 get_back_to_start_from_covid.insert(back)
 
 
-
-
-
-
 get_back_from_education = InlineKeyboardMarkup(row_width=2)
 back = InlineKeyboardButton(text="Вернуться назад", callback_data=get_callback.new(item_name="get back to long viza"))
 get_back_from_education.insert(back)
@@ -179,24 +180,6 @@ get_back_from_education.insert(back)
 get_back_to_mailing = InlineKeyboardMarkup(row_width=2)#made button which gwts back to subcribe prosses
 back1 = InlineKeyboardButton(text="Вернуться назад", callback_data=get_callback.new(item_name="subagain"))
 get_back_to_mailing.insert(back1)
-
-
-transformed_viza_info = InlineKeyboardMarkup(row_width=2)#made keyboards for buttons which gets back in educational purpose with get back to viza info
-
-educ = InlineKeyboardButton(text="С целью обучения", callback_data=get_callback.new(item_name="education"))
-transformed_viza_info.insert(educ)
-
-family = InlineKeyboardButton(text="Соединения семьи", callback_data=get_callback.new(item_name="family"))
-transformed_viza_info.insert(family)
-
-sport = InlineKeyboardButton(text="С целью спорта", callback_data=get_callback.new(item_name="sport aim"))
-transformed_viza_info.insert(sport)
-
-diff = InlineKeyboardButton(text="Долгосрочная и Краткосрочная", callback_data=get_callback.new(item_name="how differ"))
-transformed_viza_info.insert(diff)
-
-get_back = InlineKeyboardButton(text="Вернуться в визовую информцию", callback_data=get_callback.new(item_name="get back to viza info"))
-transformed_viza_info.insert(get_back)
 
 
 back_to_long_term = InlineKeyboardMarkup(row_width=2)
