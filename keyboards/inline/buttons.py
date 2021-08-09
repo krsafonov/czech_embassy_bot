@@ -181,11 +181,6 @@ back1 = InlineKeyboardButton(text="Вернуться назад", callback_data
 get_back_to_mailing.insert(back1)
 
 
-chengen_back = InlineKeyboardMarkup(row_width=2)#made back button for shengen serves for returning back to viza info
-back12 = InlineKeyboardButton(text="Вернуться назад", callback_data=get_callback.new(item_name="chengen back"))
-chengen_back.insert(back12)
-
-
 transformed_viza_info = InlineKeyboardMarkup(row_width=2)#made keyboards for buttons which gets back in educational purpose with get back to viza info
 
 educ = InlineKeyboardButton(text="С целью обучения", callback_data=get_callback.new(item_name="education"))

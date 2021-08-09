@@ -10,7 +10,7 @@ from handlers.users.news_parser import text_link_headers
 
 from keyboards.inline.blanks import message
 
-from keyboards.inline.buttons import start, long_term, chengen_back, viza_info, get_notified, \
+from keyboards.inline.buttons import start, long_term, viza_info, get_notified, \
     get_back_to_mailing, back_to_another, \
     backtovizainfo1, back_to_long_term, back_to_start, another2, backtostart1
 from keyboards.inline.center import center_c
@@ -114,7 +114,7 @@ async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
 
     msg = await call.message.answer(ter_parse,
-                              reply_markup=viza_info)
+                              reply_markup=backtovizainfo1)
     global latest_msg
     try:
         await latest_msg[call.from_user.id].delete()
@@ -575,7 +575,7 @@ async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
 
     msg = await call.message.answer(clist,
-                                    reply_markup=chengen_back)
+                                    reply_markup=backtovizainfo1)
     global latest_msg
     try:
         await latest_msg[call.from_user.id].delete()
@@ -589,7 +589,7 @@ async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
 
     msg = await call.message.answer(fee_list,
-                                    reply_markup=chengen_back)
+                                    reply_markup=backtovizainfo1)
     global latest_msg
     try:
         await latest_msg[call.from_user.id].delete()
@@ -676,7 +676,7 @@ async def sub(call: CallbackQuery):
     for i in shengen_articels:
         text += i + "(" + shengen_articels[i] + ")" + "\n" + "\n"
     msg = await call.message.answer(text,
-                                    reply_markup=chengen_back)
+                                    reply_markup=backtovizainfo1)
     global latest_msg
     try:
         await latest_msg[call.from_user.id].delete()
