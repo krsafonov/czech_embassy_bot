@@ -1,4 +1,3 @@
-from aiogram.types import InputMediaPhoto
 from telegraph import Telegraph
 
 telegraph = Telegraph()
@@ -6,7 +5,6 @@ telegraph = Telegraph()
 telegraph.create_account(short_name='Artemii')
 
 
-photo = InputMediaPhoto(media="gaky.jpg")
 
 def create_page(header, content):
     response = telegraph.create_page(
@@ -18,5 +16,3 @@ def create_page(header, content):
     )
 
     return 'https://telegra.ph/{}'.format(response['path'])
-
-

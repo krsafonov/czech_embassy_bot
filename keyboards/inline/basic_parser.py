@@ -2,7 +2,7 @@ import requests
 
 from telegraph_page_maker import create_page
 
-url = "https://www.mzv.cz/moscow/ru/vizy_i_konsulskaja/vizovaja/index.html"
+url = "https://www.mzv.cz/moscow/ru/vizy_i_konsulskaja/index.html"
 r = requests.get(url)
 r.encoding = 'utf-8-sig'
 from bs4 import BeautifulSoup

@@ -22,7 +22,7 @@ viza_info = ReplyKeyboardMarkup(resize_keyboard=True).add(back)
 
 start = InlineKeyboardMarkup(row_width=2)#made the first keyboard for buttons with the begging buttons
 
-start_viza = InlineKeyboardButton(text="Консульский отдел", callback_data=get_callback.new(item_name="cons info"))
+start_viza = InlineKeyboardButton(text="Консульский отдел", callback_data=get_callback.new(item_name="basic info"))
 start.insert(start_viza)
 
 subscribe = InlineKeyboardButton(text="Подписка на рассылку новостей", callback_data=get_callback.new(item_name="to subscribe"))
@@ -66,19 +66,19 @@ back_to_start.insert(startback)
 
 another2 = InlineKeyboardMarkup(row_width=2)#made keyboards for buttons for another data and add return button
 
-news_events = InlineKeyboardButton(text="События", callback_data=get_callback.new(item_name="events"))
+news_events = InlineKeyboardButton(text="Сообщения и события", callback_data=get_callback.new(item_name="events"))
 another2.insert(news_events)
 
-politics = InlineKeyboardButton(text="Политика", callback_data=get_callback.new(item_name="polit"))
+politics = InlineKeyboardButton(text="Политические отношения", callback_data=get_callback.new(item_name="polit"))
 another2.insert(politics)
 
-trade = InlineKeyboardButton(text="Экономика", callback_data=get_callback.new(item_name="trade"))
+trade = InlineKeyboardButton(text="Торговля и экономика", callback_data=get_callback.new(item_name="trade"))
 another2.insert(trade)
 
-culture = InlineKeyboardButton(text="Культура", callback_data=get_callback.new(item_name="cul"))
+culture = InlineKeyboardButton(text="Культура и образование", callback_data=get_callback.new(item_name="cul"))
 another2.insert(culture)
 
-war = InlineKeyboardButton(text="Чехи в войне", callback_data=get_callback.new(item_name="war"))
+war = InlineKeyboardButton(text="Чехи во второй мировой войне", callback_data=get_callback.new(item_name="war"))
 another2.insert(war)
 
 about = InlineKeyboardButton(text="О посольстве ", callback_data=get_callback.new(item_name="about"))
@@ -125,15 +125,15 @@ blanks = InlineKeyboardButton(text="Бланки", callback_data=get_callback.ne
 viza_info.insert(blanks)
 
 
-cl = InlineKeyboardButton(text="Виза не требуется ", callback_data=get_callback.new(item_name="country_list"))
+cl = InlineKeyboardButton(text="Список государств, граждане которых не нуждаются в визе для въезда в ЧР", callback_data=get_callback.new(item_name="country_list"))
 viza_info.insert(cl)
 
 
-branch = InlineKeyboardButton(text="Визовые центры", callback_data=get_callback.new(item_name="viza_center"))
+branch = InlineKeyboardButton(text="Региональные визовые центры", callback_data=get_callback.new(item_name="viza_center"))
 viza_info.insert(branch)
 
 
-ter = InlineKeyboardButton(text="Сфера деятельности", callback_data=get_callback.new(item_name="ter"))
+ter = InlineKeyboardButton(text="Территориальная сфера деятельности", callback_data=get_callback.new(item_name="ter"))
 viza_info.insert(ter)
 
 
@@ -192,19 +192,19 @@ long_term = InlineKeyboardMarkup(row_width=2)#made keyboard for buttons for viza
 educ = InlineKeyboardButton(text="С целью обучения", callback_data=get_callback.new(item_name="education_cz"))
 long_term.insert(educ)
 
-family = InlineKeyboardButton(text="Соединения семьи", callback_data=get_callback.new(item_name="family1"))
+family = InlineKeyboardButton(text="С целью соединения семьи", callback_data=get_callback.new(item_name="family1"))
 long_term.insert(family)
 
 sport = InlineKeyboardButton(text="С целью спорта/культуры", callback_data=get_callback.new(item_name="sport1"))
 long_term.insert(sport)
 
-difference = InlineKeyboardButton(text="Об долгосрочной и краткосрочной", callback_data=get_callback.new(item_name="how differ1"))
+difference = InlineKeyboardButton(text="Разница между долгосрочной и краткосрочной", callback_data=get_callback.new(item_name="how differ1"))
 long_term.insert(difference)
 
-bis = InlineKeyboardButton(text="Предпринимательство", callback_data=get_callback.new(item_name="bis"))
+bis = InlineKeyboardButton(text="С целью предпринимательства", callback_data=get_callback.new(item_name="bis"))
 long_term.insert(bis)
 
-long_list = InlineKeyboardButton(text="Список всех статей", callback_data=get_callback.new(item_name="long_list"))
+long_list = InlineKeyboardButton(text="Вывести список всех статей", callback_data=get_callback.new(item_name="long_list"))
 long_term.insert(long_list)
 
 backtoviza = InlineKeyboardButton(text="Вернуться в визовую информацию", callback_data=get_callback.new(item_name="vb"))
