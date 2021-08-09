@@ -36,7 +36,7 @@ from sql import insert_user
 
 dp.message_handler()
 
-latest_msg = None
+latest_msg = {}
 
 
 @dp.callback_query_handler(
@@ -47,8 +47,8 @@ async def sub(call: CallbackQuery):
     msg = await call.message.answer(educational_content, reply_markup=back_to_long_term)
     global latest_msg
     try:
-        await latest_msg.delete()
-        latest_msg = msg
+        await latest_msg[call.from_user.id].delete()
+        latest_msg[call.message.from_user.id] = msg
     except Exception as e:
         logging.error(f"During {call.data} there was exception {e}")
 
@@ -59,7 +59,7 @@ async def show_items(message: Message):
         text="Доброго времени суток, юзеры.\nДанный бот призван облегчить ваш процесс работы с посольством Чешской Республики в Москве \n"
              "Для начала работы выберете топик снизу", reply_markup=start)
     global latest_msg
-    latest_msg = msg
+    latest_msg[message.from_user.id] = msg
     if insert_user(message.from_user.username, message.from_user.id):
         logging.info(f"Hooray! We have a new user {message.from_user.username} with id {message.from_user.id}. It was successfully added to our database.")
     else:
@@ -72,8 +72,8 @@ async def viza_start(call: CallbackQuery):
     msg = await call.message.answer(basic_content, reply_markup=backtostart1)
     global latest_msg
     try:
-        await latest_msg.delete()
-        latest_msg = msg
+        await latest_msg[call.from_user.id].delete()
+        latest_msg[call.message.from_user.id] = msg
     except Exception as e:
         logging.error(f"During {call.data} there was exception {e}")
 """
@@ -87,8 +87,8 @@ async def viza_start(call: CallbackQuery):
                                     reply_markup=viza_info)
     global latest_msg
     try:
-        await latest_msg.delete()
-        latest_msg = msg
+        await latest_msg[call.from_user.id].delete()
+        latest_msg[call.message.from_user.id] = msg
     except Exception as e:
         logging.error(f"During {call.data} there was exception {e}")
 
@@ -102,8 +102,8 @@ async def sub(call: CallbackQuery):
                                     reply_markup=long_term)
     global latest_msg
     try:
-        await latest_msg.delete()
-        latest_msg = msg
+        await latest_msg[call.from_user.id].delete()
+        latest_msg[call.message.from_user.id] = msg
     except Exception as e:
         logging.error(f"During {call.data} there was exception {e}")
 
@@ -117,8 +117,8 @@ async def sub(call: CallbackQuery):
                               reply_markup=viza_info)
     global latest_msg
     try:
-        await latest_msg.delete()
-        latest_msg = msg
+        await latest_msg[call.from_user.id].delete()
+        latest_msg[call.message.from_user.id] = msg
     except Exception as e:
         logging.warning(f"During {call.data} there was exception {e}")
 
@@ -135,8 +135,8 @@ async def sub(call: CallbackQuery):
                                     reply_markup=get_back_to_mailing)
     global latest_msg
     try:
-        await latest_msg.delete()
-        latest_msg = msg
+        await latest_msg[call.from_user.id].delete()
+        latest_msg[call.message.from_user.id] = msg
     except Exception as e:
         logging.error(f"During {call.data} there was exception {e}")
 
@@ -149,8 +149,8 @@ async def sub(call: CallbackQuery):
                                     reply_markup=get_notified)
     global latest_msg
     try:
-        await latest_msg.delete()
-        latest_msg = msg
+        await latest_msg[call.from_user.id].delete()
+        latest_msg[call.message.from_user.id] = msg
     except Exception as e:
         logging.error(f"During {call.data} there was exception {e}")
 
@@ -163,8 +163,8 @@ async def sub(call: CallbackQuery):
                                     reply_markup=start)
     global latest_msg
     try:
-        await latest_msg.delete()
-        latest_msg = msg
+        await latest_msg[call.from_user.id].delete()
+        latest_msg[call.message.from_user.id] = msg
     except Exception as e:
         logging.error(f"During {call.data} there was exception {e}")
 
@@ -180,8 +180,8 @@ async def sub(call: CallbackQuery):
                               reply_markup=back_to_long_term)
     global latest_msg
     try:
-        await latest_msg.delete()
-        latest_msg = msg
+        await latest_msg[call.from_user.id].delete()
+        latest_msg[call.message.from_user.id] = msg
     except Exception as e:
         logging.error(f"During {call.data} there was exception {e}")
 
@@ -194,8 +194,8 @@ async def sub(call: CallbackQuery):
                               reply_markup=back_to_long_term)
     global latest_msg
     try:
-        await latest_msg.delete()
-        latest_msg = msg
+        await latest_msg[call.from_user.id].delete()
+        latest_msg[call.message.from_user.id] = msg
     except Exception as e:
         logging.error(f"During {call.data} there was exception {e}")
 
@@ -208,8 +208,8 @@ async def sub(call: CallbackQuery):
                                     reply_markup=backtovizainfo1)
     global latest_msg
     try:
-        await latest_msg.delete()
-        latest_msg = msg
+        await latest_msg[call.from_user.id].delete()
+        latest_msg[call.message.from_user.id] = msg
     except Exception as e:
         logging.error(f"During {call.data} there was exception {e}")
 
@@ -222,8 +222,8 @@ async def sub(call: CallbackQuery):
                                     reply_markup=viza_info)
     global latest_msg
     try:
-        await latest_msg.delete()
-        latest_msg = msg
+        await latest_msg[call.from_user.id].delete()
+        latest_msg[call.message.from_user.id] = msg
     except Exception as e:
         logging.error(f"During {call.data} there was exception {e}")
 
@@ -236,8 +236,8 @@ async def sub(call: CallbackQuery):
                                     reply_markup=long_term)
     global latest_msg
     try:
-        await latest_msg.delete()
-        latest_msg = msg
+        await latest_msg[call.from_user.id].delete()
+        latest_msg[call.message.from_user.id] = msg
     except Exception as e:
         logging.error(f"During {call.data} there was exception {e}")
 
@@ -250,8 +250,8 @@ async def sub(call: CallbackQuery):
                                     reply_markup=back_to_long_term)
     global latest_msg
     try:
-        await latest_msg.delete()
-        latest_msg = msg
+        await latest_msg[call.from_user.id].delete()
+        latest_msg[call.message.from_user.id] = msg
     except Exception as e:
         logging.error(f"During {call.data} there was exception {e}")
 
@@ -263,8 +263,8 @@ async def sub(call: CallbackQuery):
     msg = await call.message.answer(family, reply_markup=back_to_long_term)
     global latest_msg
     try:
-        await latest_msg.delete()
-        latest_msg = msg
+        await latest_msg[call.from_user.id].delete()
+        latest_msg[call.message.from_user.id] = msg
     except Exception as e:
         logging.error(f"During {call.data} there was exception {e}")
 
@@ -277,8 +277,8 @@ async def sub(call: CallbackQuery):
                                     reply_markup=back_to_long_term)
     global latest_msg
     try:
-        await latest_msg.delete()
-        latest_msg = msg
+        await latest_msg[call.from_user.id].delete()
+        latest_msg[call.message.from_user.id] = msg
     except Exception as e:
         logging.error(f"During {call.data} there was exception {e}")
 
@@ -291,8 +291,8 @@ async def sub(call: CallbackQuery):
                                     reply_markup=long_term)
     global latest_msg
     try:
-        await latest_msg.delete()
-        latest_msg = msg
+        await latest_msg[call.from_user.id].delete()
+        latest_msg[call.message.from_user.id] = msg
     except Exception as e:
         logging.error(f"During {call.data} there was exception {e}")
 
@@ -305,8 +305,8 @@ async def sub(call: CallbackQuery):
                                     reply_markup=get_notified)
     global latest_msg
     try:
-        await latest_msg.delete()
-        latest_msg = msg
+        await latest_msg[call.from_user.id].delete()
+        latest_msg[call.message.from_user.id] = msg
     except Exception as e:
         logging.error(f"During {call.data} there was exception {e}")
 
@@ -320,8 +320,8 @@ async def sub(call: CallbackQuery):
                                     reply_markup=long_term)
     global latest_msg
     try:
-        await latest_msg.delete()
-        latest_msg = msg
+        await latest_msg[call.from_user.id].delete()
+        latest_msg[call.message.from_user.id] = msg
     except Exception as e:
         logging.error(f"During {call.data} there was exception {e}")
 
@@ -334,8 +334,8 @@ async def sub(call: CallbackQuery):
                                     reply_markup=start)
     global latest_msg
     try:
-        await latest_msg.delete()
-        latest_msg = msg
+        await latest_msg[call.from_user.id].delete()
+        latest_msg[call.message.from_user.id] = msg
     except Exception as e:
         logging.error(f"During {call.data} there was exception {e}")
 
@@ -348,8 +348,8 @@ async def sub(call: CallbackQuery):
                                     reply_markup=another2)
     global latest_msg
     try:
-        await latest_msg.delete()
-        latest_msg = msg
+        await latest_msg[call.from_user.id].delete()
+        latest_msg[call.message.from_user.id] = msg
     except Exception as e:
         logging.error(f"During {call.data} there was exception {e}")
 
@@ -360,9 +360,11 @@ async def sub(call: CallbackQuery):
     msg = await call.message.answer(list5,
                               reply_markup=back_to_start)
     global latest_msg
+    logging.info(call.message.from_user.id)
+    logging.info(latest_msg[call.message.from_user.id])
     try:
-        await latest_msg.delete()
-        latest_msg = msg
+        await latest_msg[call.from_user.id].delete()
+        latest_msg[call.message.from_user.id] = msg
     except Exception as e:
         logging.error(f"During {call.data} there was exception {e}")
 
@@ -375,8 +377,8 @@ async def sub(call: CallbackQuery):
                                     reply_markup=start)
     global latest_msg
     try:
-        await latest_msg.delete()
-        latest_msg = msg
+        await latest_msg[call.from_user.id].delete()
+        latest_msg[call.message.from_user.id] = msg
     except Exception as e:
         logging.error(f"During {call.data} there was exception {e}")
 
@@ -389,8 +391,8 @@ async def sub(call: CallbackQuery):
                                     reply_markup=back_to_another)
     global latest_msg
     try:
-        await latest_msg.delete()
-        latest_msg = msg
+        await latest_msg[call.from_user.id].delete()
+        latest_msg[call.message.from_user.id] = msg
     except Exception as e:
         logging.error(f"During {call.data} there was exception {e}")
 
@@ -405,8 +407,8 @@ async def sub(call: CallbackQuery):
                                     reply_markup=back_to_another)
     global latest_msg
     try:
-        await latest_msg.delete()
-        latest_msg = msg
+        await latest_msg[call.from_user.id].delete()
+        latest_msg[call.message.from_user.id] = msg
     except Exception as e:
         logging.error(f"During {call.data} there was exception {e}")
 
@@ -421,8 +423,8 @@ async def sub(call: CallbackQuery):
                                     reply_markup=back_to_another)
     global latest_msg
     try:
-        await latest_msg.delete()
-        latest_msg = msg
+        await latest_msg[call.from_user.id].delete()
+        latest_msg[call.message.from_user.id] = msg
     except Exception as e:
         logging.error(f"During {call.data} there was exception {e}")
 
@@ -435,8 +437,8 @@ async def sub(call: CallbackQuery):
                                     reply_markup=back_to_another)
     global latest_msg
     try:
-        await latest_msg.delete()
-        latest_msg = msg
+        await latest_msg[call.from_user.id].delete()
+        latest_msg[call.message.from_user.id] = msg
     except Exception as e:
         logging.error(f"During {call.data} there was exception {e}")
 
@@ -449,8 +451,8 @@ async def sub(call: CallbackQuery):
                                     reply_markup=back_to_another)
     global latest_msg
     try:
-        await latest_msg.delete()
-        latest_msg = msg
+        await latest_msg[call.from_user.id].delete()
+        latest_msg[call.message.from_user.id] = msg
     except Exception as e:
         logging.error(f"During {call.data} there was exception {e}")
 
@@ -462,8 +464,8 @@ async def sub(call: CallbackQuery):
                               reply_markup=back_to_another)
     global latest_msg
     try:
-        await latest_msg.delete()
-        latest_msg = msg
+        await latest_msg[call.from_user.id].delete()
+        latest_msg[call.message.from_user.id] = msg
     except Exception as e:
         logging.error(f"During {call.data} there was exception {e}")
 
@@ -476,8 +478,8 @@ async def sub(call: CallbackQuery):
                                     reply_markup=start)
     global latest_msg
     try:
-        await latest_msg.delete()
-        latest_msg = msg
+        await latest_msg[call.from_user.id].delete()
+        latest_msg[call.message.from_user.id] = msg
     except Exception as e:
         logging.error(f"During {call.data} there was exception {e}")
 
@@ -490,8 +492,8 @@ async def sub(call: CallbackQuery):
                                     reply_markup=another2)
     global latest_msg
     try:
-        await latest_msg.delete()
-        latest_msg = msg
+        await latest_msg[call.from_user.id].delete()
+        latest_msg[call.message.from_user.id] = msg
     except Exception as e:
         logging.error(f"During {call.data} there was exception {e}")
 
@@ -504,8 +506,8 @@ async def sub(call: CallbackQuery):
                                     reply_markup=start)
     global latest_msg
     try:
-        await latest_msg.delete()
-        latest_msg = msg
+        await latest_msg[call.from_user.id].delete()
+        latest_msg[call.message.from_user.id] = msg
     except Exception as e:
         logging.error(f"During {call.data} there was exception {e}")
 
@@ -519,8 +521,8 @@ async def sub(call: CallbackQuery):
                                     reply_markup=viza_info)
     global latest_msg
     try:
-        await latest_msg.delete()
-        latest_msg = msg
+        await latest_msg[call.from_user.id].delete()
+        latest_msg[call.message.from_user.id] = msg
     except Exception as e:
         logging.error(f"During {call.data} there was exception {e}")
 
@@ -532,8 +534,8 @@ async def sub(call: CallbackQuery):
     msg = await call.message.answer(basic_content, reply_markup=backtovizainfo1)
     global latest_msg
     try:
-        await latest_msg.delete()
-        latest_msg = msg
+        await latest_msg[call.from_user.id].delete()
+        latest_msg[call.message.from_user.id] = msg
     except Exception as e:
         logging.error(f"During {call.data} there was exception {e}")
 
@@ -548,8 +550,8 @@ async def sub(call: CallbackQuery):
                               reply_markup=backtovizainfo1)
     global latest_msg
     try:
-        await latest_msg.delete()
-        latest_msg = msg
+        await latest_msg[call.from_user.id].delete()
+        latest_msg[call.message.from_user.id] = msg
     except Exception as e:
         logging.error(f"During {call.data} there was exception {e}")
 
@@ -564,8 +566,8 @@ async def sub(call: CallbackQuery):
                               reply_markup=backtovizainfo1)
     global latest_msg
     try:
-        await latest_msg.delete()
-        latest_msg = msg
+        await latest_msg[call.from_user.id].delete()
+        latest_msg[call.message.from_user.id] = msg
     except Exception as e:
         logging.error(f"During {call.data} there was exception {e}")
 
@@ -578,8 +580,8 @@ async def sub(call: CallbackQuery):
                                     reply_markup=chengen_back)
     global latest_msg
     try:
-        await latest_msg.delete()
-        latest_msg = msg
+        await latest_msg[call.from_user.id].delete()
+        latest_msg[call.message.from_user.id] = msg
     except Exception as e:
         logging.error(f"During {call.data} there was exception {e}")
 
@@ -592,8 +594,8 @@ async def sub(call: CallbackQuery):
                                     reply_markup=chengen_back)
     global latest_msg
     try:
-        await latest_msg.delete()
-        latest_msg = msg
+        await latest_msg[call.from_user.id].delete()
+        latest_msg[call.message.from_user.id] = msg
     except Exception as e:
         logging.error(f"During {call.data} there was exception {e}")
 
@@ -606,8 +608,8 @@ async def sub(call: CallbackQuery):
                               reply_markup=backtovizainfo1)
     global latest_msg
     try:
-        await latest_msg.delete()
-        latest_msg = msg
+        await latest_msg[call.from_user.id].delete()
+        latest_msg[call.message.from_user.id] = msg
     except Exception as e:
         logging.error(f"During {call.data} there was exception {e}")
 
@@ -620,8 +622,8 @@ async def sub(call: CallbackQuery):
                                     reply_markup=another2)
     global latest_msg
     try:
-        await latest_msg.delete()
-        latest_msg = msg
+        await latest_msg[call.from_user.id].delete()
+        latest_msg[call.message.from_user.id] = msg
     except Exception as e:
         logging.error(f"During {call.data} there was exception {e}")
 
@@ -634,8 +636,8 @@ async def sub(call: CallbackQuery):
                                     reply_markup=start)
     global latest_msg
     try:
-        await latest_msg.delete()
-        latest_msg = msg
+        await latest_msg[call.from_user.id].delete()
+        latest_msg[call.message.from_user.id] = msg
     except Exception as e:
         logging.error(f"During {call.data} there was exception {e}")
 
@@ -648,8 +650,8 @@ async def sub(call: CallbackQuery):
                                     reply_markup=viza_info)
     global latest_msg
     try:
-        await latest_msg.delete()
-        latest_msg = msg
+        await latest_msg[call.from_user.id].delete()
+        latest_msg[call.message.from_user.id] = msg
     except Exception as e:
         logging.error(f"During {call.data} there was exception {e}")
 
@@ -662,8 +664,8 @@ async def sub(call: CallbackQuery):
                                     reply_markup=start)
     global latest_msg
     try:
-        await latest_msg.delete()
-        latest_msg = msg
+        await latest_msg[call.from_user.id].delete()
+        latest_msg[call.message.from_user.id] = msg
     except Exception as e:
         logging.error(f"During {call.data} there was exception {e}")
 
@@ -679,8 +681,8 @@ async def sub(call: CallbackQuery):
                                     reply_markup=chengen_back)
     global latest_msg
     try:
-        await latest_msg.delete()
-        latest_msg = msg
+        await latest_msg[call.from_user.id].delete()
+        latest_msg[call.message.from_user.id] = msg
     except Exception as e:
         logging.error(f"During {call.data} there was exception {e}")
 
@@ -694,7 +696,7 @@ async def sub(call: CallbackQuery):
                                     reply_markup=viza_info)
     global latest_msg
     try:
-        await latest_msg.delete()
-        latest_msg = msg
+        await latest_msg[call.from_user.id].delete()
+        latest_msg[call.message.from_user.id] = msg
     except Exception as e:
         logging.error(f"During {call.data} there was exception {e}")
