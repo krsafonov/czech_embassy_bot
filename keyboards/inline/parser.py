@@ -24,4 +24,5 @@ def parse(page_url):
     return create_page(title, html_content)
 
 
-print(parse("https://www.mzv.cz/moscow/ru/o_posolstve/kak_nas_najti.html"))
+
+
