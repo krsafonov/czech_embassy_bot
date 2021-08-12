@@ -20,6 +20,7 @@ from keyboards.inline.differ_parser import differ
 from keyboards.inline.educational_parser import educational_content
 from keyboards.inline.fee import fee_list
 from keyboards.inline.long_living_parser import long
+from keyboards.inline.parser import parse
 from keyboards.inline.sport_paser import sport
 from keyboards.inline.ter_p import ter_parse
 
@@ -65,18 +66,18 @@ async def show_items(message: Message):
     else:
         logging.warning(f"User {message.from_user.username} with id {message.from_user.id} already exists in the database or another error occurred!")
 
-"""@dp.callback_query_handler(text_contains="basic info")
+@dp.callback_query_handler(text_contains="basic info")
 async def viza_start(call: CallbackQuery):
     await call.answer(cache_time=60)
-
-    msg = await call.message.answer(basic_content, reply_markup=backtostart1)
+    content = print(parse("https://www.mzv.cz/moscow/ru/vizy_i_konsulskaja/index.html"))
+    msg = await call.message.answer(content, reply_markup=backtostart1)
     global latest_msg
     try:
         await latest_msg[call.from_user.id].delete()
         latest_msg[call.from_user.id] = msg
     except Exception as e:
         logging.error(f"During {call.data} there was exception {e}")
-"""
+
 
 @dp.callback_query_handler(
     text_contains="main viza info")  # made callback for button which gives options of different types of vizas
