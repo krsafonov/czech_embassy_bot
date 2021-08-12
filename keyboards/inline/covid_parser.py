@@ -1,6 +1,6 @@
 import requests
 
-from keyboards.inline.parser import parse
+
 
 r = requests.get("https://www.mzv.cz/moscow/ru/vizy_i_konsulskaja/covid_19/index.html")
 r.encoding = 'utf-8-sig'
