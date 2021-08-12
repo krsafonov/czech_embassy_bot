@@ -1,6 +1,6 @@
 import requests
 
-
+from keyboards.inline.parser import parse
 
 url = "https://www.mzv.cz/moscow/ru/torgovlja_ekonomika/index.html"
 r = requests.get(url)

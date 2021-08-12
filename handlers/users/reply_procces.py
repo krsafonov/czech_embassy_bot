@@ -3,33 +3,29 @@ import logging
 from aiogram.dispatcher.filters import Command
 from aiogram.types import Message, CallbackQuery
 
-from handlers.users.bis_parser import bis
 from handlers.users.long_list_parser import long_list
 from handlers.users.news_parser import text_link_headers
-
 
 from keyboards.inline.blanks import message
 
 from keyboards.inline.buttons import start, long_term, viza_info, get_notified, \
     get_back_to_mailing, back_to_another, \
     backtovizainfo1, back_to_long_term, back_to_start, another2, backtostart1
-from keyboards.inline.center import center_c
+
 from keyboards.inline.constant_living_parser import constant
 from keyboards.inline.country_list_parser import clist
-from keyboards.inline.differ_parser import differ
-from keyboards.inline.educational_parser import educational_content
-from keyboards.inline.fee import fee_list
+
+
 from keyboards.inline.long_living_parser import long
 from keyboards.inline.parser import parse
-from keyboards.inline.sport_paser import sport
-from keyboards.inline.ter_p import ter_parse
+from keyboards.inline.politics_parser import pol_articles
 
 from loader import dp
 
 from keyboards.inline.covid_parser import list5
 from keyboards.inline.cul_parser import cul
 from keyboards.inline.events_parser import events
-from keyboards.inline.polit_parser import polit
+
 from keyboards.inline.trade_parser import trade_articels
 from keyboards.inline.shengen_articles_parser import shengen_articels
 
@@ -44,8 +40,8 @@ latest_msg = {}
     text_contains="education_cz")  # made callback for button which gets you back from education to long term viza
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
-
-    msg = await call.message.answer(educational_content, reply_markup=back_to_long_term)
+    content = parse("https://www.mzv.cz/moscow/ru/vizy_i_konsulskaja/vizovaja/dolgosrochnaja/x2011_04_22_2.html")
+    msg = await call.message.answer(content, reply_markup=back_to_long_term)
     global latest_msg
     try:
         await latest_msg[call.from_user.id].delete()
@@ -69,8 +65,8 @@ async def show_items(message: Message):
 @dp.callback_query_handler(text_contains="basic info")
 async def viza_start(call: CallbackQuery):
     await call.answer(cache_time=60)
-    x = parse("https://www.mzv.cz/moscow/ru/vizy_i_konsulskaja/index.html")
-    msg = await call.message.answer(x, reply_markup=backtostart1)
+    content = parse("https://www.mzv.cz/moscow/ru/vizy_i_konsulskaja/index.html")
+    msg = await call.message.answer(content, reply_markup=backtostart1)
     global latest_msg
     try:
         await latest_msg[call.from_user.id].delete()
@@ -113,8 +109,8 @@ async def sub(call: CallbackQuery):
     text_contains="ter")  # made callback for long term viza button which gives as set of buttons with types of long term viza
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
-
-    msg = await call.message.answer(ter_parse,
+    content = parse("https://www.mzv.cz/moscow/ru/vizy_i_konsulskaja/vizovaja/teritorialnaja_sfera/index.html")
+    msg = await call.message.answer(content,
                               reply_markup=backtovizainfo1)
     global latest_msg
     try:
@@ -190,8 +186,8 @@ async def sub(call: CallbackQuery):
 @dp.callback_query_handler(text_contains="bis")
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
-
-    msg = await call.message.answer(bis,
+    content = parse("https://www.mzv.cz/moscow/ru/vizy_i_konsulskaja/vizovaja/dolgosrochnaja/x2011_04_22_5.html")
+    msg = await call.message.answer(content,
                               reply_markup=back_to_long_term)
     global latest_msg
     try:
@@ -246,8 +242,8 @@ async def sub(call: CallbackQuery):
 @dp.callback_query_handler(text_contains="sport1")
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
-
-    msg = await call.message.answer(sport,
+    content = parse("https://www.mzv.cz/moscow/ru/vizy_i_konsulskaja/vizovaja/dolgosrochnaja/x2020_08_07.html")
+    msg = await call.message.answer(content,
                                     reply_markup=back_to_long_term)
     global latest_msg
     try:
@@ -260,8 +256,8 @@ async def sub(call: CallbackQuery):
 @dp.callback_query_handler(text_contains="family1")
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
-    family = "https://telegra.ph/S-celyu-soedineniya-semi-08-06"
-    msg = await call.message.answer(family, reply_markup=back_to_long_term)
+    content = parse("https://www.mzv.cz/moscow/ru/vizy_i_konsulskaja/vizovaja/dolgosrochnaja/x2011_04_22_3.html")
+    msg = await call.message.answer(content, reply_markup=back_to_long_term)
     global latest_msg
     try:
         await latest_msg[call.from_user.id].delete()
@@ -273,8 +269,8 @@ async def sub(call: CallbackQuery):
 @dp.callback_query_handler(text_contains="how differ1")
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
-
-    msg = await call.message.answer(differ,
+    content = parse("https://www.mzv.cz/moscow/ru/vizy_i_konsulskaja/vizovaja/dolgosrochnaja/x2011_08_17.html")
+    msg = await call.message.answer(content,
                                     reply_markup=back_to_long_term)
     global latest_msg
     try:
@@ -399,10 +395,12 @@ async def sub(call: CallbackQuery):
 @dp.callback_query_handler(text_contains="polit")  # made callback for button which gives polit content
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
-    text1 = ""
-    for i in polit:
-        text1 += i + "(" + polit[i] + ")\n" + '\n'
-    msg = await call.message.answer(text1,
+
+    text = ""
+    for i in pol_articles:
+        text += i + "\n(" + parse(pol_articles[i]) + ")" + "\n\n"
+
+    msg = await call.message.answer(text,
                                     reply_markup=back_to_another)
     global latest_msg
     try:
@@ -445,8 +443,8 @@ async def sub(call: CallbackQuery):
 @dp.callback_query_handler(text_contains="war")  # made callback for button which gives war's content
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
-    fr = "https://telegra.ph/CHehi-vo-vtoroj-mirovoj-vojne-08-05"
-    msg = await call.message.answer(fr,
+    content = parse("https://www.mzv.cz/moscow/ru/soobschenia_sobytija/x2020_04_03/index.html")
+    msg = await call.message.answer(content,
                                     reply_markup=back_to_another)
     global latest_msg
     try:
@@ -459,7 +457,8 @@ async def sub(call: CallbackQuery):
 @dp.callback_query_handler(text_contains="about")  # made callback for button which gives about's content
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
-    msg = await call.message.answer(about_content.open(),
+    content = parse("https://www.mzv.cz/moscow/ru/o_posolstve/kak_nas_najti.html")
+    msg = await call.message.answer(content,
                               reply_markup=back_to_another)
     global latest_msg
     try:
@@ -529,8 +528,8 @@ async def sub(call: CallbackQuery):
 @dp.callback_query_handler(text_contains="basic")
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
-    basic_content = "https://telegra.ph/Osnovnaya-vizovaya-informaciya-08-06"
-    msg = await call.message.answer(basic_content, reply_markup=backtovizainfo1)
+    content = parse("https://www.mzv.cz/moscow/ru/vizy_i_konsulskaja/vizovaja/index.html")
+    msg = await call.message.answer(content, reply_markup=backtovizainfo1)
     global latest_msg
     try:
         await latest_msg[call.from_user.id].delete()
@@ -588,8 +587,8 @@ async def sub(call: CallbackQuery):
 @dp.callback_query_handler(text_contains="fee")
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
-
-    msg = await call.message.answer(fee_list,
+    content = parse("https://www.mzv.cz/moscow/ru/vizy_i_konsulskaja/vizovaja/konsulskije_sbory/index.html")
+    msg = await call.message.answer(content,
                                     reply_markup=backtovizainfo1)
     global latest_msg
     try:
@@ -602,8 +601,8 @@ async def sub(call: CallbackQuery):
 @dp.callback_query_handler(text_contains="viza_center")
 async def sub(call: CallbackQuery):
     await call.answer(cache_time=60)
-
-    msg = await call.message.answer(center_c,
+    content = parse("https://www.mzv.cz/moscow/ru/vizy_i_konsulskaja/vizovaja/x2011_06_13/index.html")
+    msg = await call.message.answer(content,
                               reply_markup=backtovizainfo1)
     global latest_msg
     try:

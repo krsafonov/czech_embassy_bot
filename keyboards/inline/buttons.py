@@ -141,7 +141,7 @@ long_term = InlineKeyboardMarkup(row_width=2)#made keyboard for buttons for viza
 educ = InlineKeyboardButton(text="С целью обучения", callback_data=get_callback.new(item_name="education_cz"))
 long_term.insert(educ)
 
-family = InlineKeyboardButton(text="Ссоединения семьи", callback_data=get_callback.new(item_name="family1"))
+family = InlineKeyboardButton(text="Соединения семьи", callback_data=get_callback.new(item_name="family1"))
 long_term.insert(family)
 
 
