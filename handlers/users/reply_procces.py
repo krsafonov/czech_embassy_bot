@@ -69,8 +69,8 @@ async def show_items(message: Message):
 @dp.callback_query_handler(text_contains="basic info")
 async def viza_start(call: CallbackQuery):
     await call.answer(cache_time=60)
-    content = print(parse("https://www.mzv.cz/moscow/ru/vizy_i_konsulskaja/index.html"))
-    msg = await call.message.answer(content, reply_markup=backtostart1)
+    x = parse("https://www.mzv.cz/moscow/ru/vizy_i_konsulskaja/index.html")
+    msg = await call.message.answer(x, reply_markup=backtostart1)
     global latest_msg
     try:
         await latest_msg[call.from_user.id].delete()
