@@ -385,8 +385,8 @@ async def sub(call: CallbackQuery):
     for i in events:
         text += i + "\n" + "(" + events[i] + ")" + "\n\n"
         if len(text)>4096:
-            for i in range(0, len(text), 4096):
-                msg = await call.message.answer(text=text[i:i + 4096],
+            for j in range(0, len(text), 4096):
+                msg = await call.message.answer(text=text[j:j + 4096],
                                                 reply_markup=back_to_another)
 
     global latest_msg
