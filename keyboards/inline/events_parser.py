@@ -11,4 +11,3 @@ for i in content:
     events[i.getText()] = "https://www.mzv.cz" + i.a["href"]
 
 
-
