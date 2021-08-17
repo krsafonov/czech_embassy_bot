@@ -99,8 +99,8 @@ async def sub(call: CallbackQuery):
                                     reply_markup=long_term)
     global latest_msg
     try:
-        await latest_msg[call.from_user.id].editMessageText()
-        await latest_msg[call.from_user.id].editMessageReplyMarkup()
+        await latest_msg[call.from_user.id].edit()
+
         latest_msg[call.from_user.id] = msg
     except Exception as e:
         logging.error(f"During {call.data} there was exception {e}")
