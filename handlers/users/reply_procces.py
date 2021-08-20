@@ -1,3 +1,4 @@
+import asyncio
 import logging
 
 from aiogram.dispatcher.filters import Command
@@ -80,12 +81,9 @@ async def viza_start(call: CallbackQuery):
 async def viza_start(call: CallbackQuery):
     await call.answer(cache_time=60)
 
-    msg = await call.message.answer("Визовая информация",
-                                    reply_markup=viza_info)
     global latest_msg
     try:
-        await latest_msg[call.from_user.id].delete()
-        latest_msg[call.from_user.id] = msg
+        await latest_msg[call.from_user.id].edit_text("Визовая информация", reply_markup=viza_info)
     except Exception as e:
         logging.error(f"During {call.data} there was exception {e}")
 
